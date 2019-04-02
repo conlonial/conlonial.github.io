@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>做题的总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。 首先misc作为最好入手的类型，我首先做了signin和poem，这两道就是让我们了解了提交flag的标准格式：flag{**}。而poem则是简单的下载提供的图片看图得答案。 接下来是LSB和docx这两道题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="做题的总结">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/做题的总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。 首先misc作为最好入手的类型，我首先做了signin和poem，这两道就是让我们了解了提交flag的标准格式：flag{**}。而poem则是简单的下载提供的图片看图得答案。 接下来是LSB和docx这两道题。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/5bHNSLP.png">
+<meta property="og:image" content="https://i.imgur.com/HBZXeOV.png">
+<meta property="og:image" content="https://i.imgur.com/1acUxc8.png">
+<meta property="og:updated_time" content="2019-04-02T13:28:39.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="做题的总结">
+<meta name="twitter:description" content="h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。 首先misc作为最好入手的类型，我首先做了signin和poem，这两道就是让我们了解了提交flag的标准格式：flag{**}。而poem则是简单的下载提供的图片看图得答案。 接下来是LSB和docx这两道题。">
+<meta name="twitter:image" content="https://i.imgur.com/5bHNSLP.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-做题的总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/02/做题的总结/" class="article-date">
+  <time datetime="2019-04-02T12:43:45.000Z" itemprop="datePublished">2019-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      做题的总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。"><a href="#h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。" class="headerlink" title="h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。"></a>h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。</h2><p> 首先misc作为最好入手的类型，我首先做了signin和poem，这两道就是让我们了解了提交flag的标准格式：flag{**}。而poem则是简单的下载提供的图片看图得答案。<br> 接下来是LSB和docx这两道题。LSB这道题给了很多hint，我首先在网上搜索了LSB，了解了LSB最低有效位在CTF中有一种题型叫做LSB隐写，简单讲就是修改RGB颜色分量的最低二进制位，写入加密信息，而人眼无法注意到前后的变化。接下来就下载了能帮助我们解决LSB隐写的Stegsolve，用它打开图片转换不同的频道，最后得到下图：<br> <img src="https://i.imgur.com/5bHNSLP.png" alt="Imgur"><br> 扫描二维码得到了flag。<br>docx这道题在搜索得知docx实质为一个zip文件时，我尝试将文件的格式改为.zip，之后在文件夹中得到了flag所在的文件：<br><img src="https://i.imgur.com/HBZXeOV.png" alt="Imgur">打开flag.xml，即为所求。<br>今天做了一道crypto题，what’s the RSA ，RSA顾名思义既非对称加密，之前所理解的非对称加密，公钥私钥仅仅停留在理论阶段，面对一道RSA题，首先看到所给的是密文和私钥，那么思路就是利用私钥来解密文即可，在搜索了一些RSA题的做法后，我首先是在ubuntu下下载了openssl，他是专门用来加密解密的一个软件，接下来在终端下rsa_private_key.pem文件所在路径下，利用<code>openssl rsa -in private.pem -text -modulus</code>得到了私钥，接下来把这个私钥存在名为private.key里和flag.encrypt放在桌面下，再进行解密，根据我看的文章，不同填充方式对应不同语句执行，我这里尝试了<code>openssl rsautl -decrypt -in flag.encrypt -private.key -out flag.de</code>后，在桌面生成了一个flag.de文件，即为所求。<br><img src="https://i.imgur.com/1acUxc8.png" alt="Imgur"></p>
+<hr>
+<p><strong>现在做题的不管质量都亟待提高，但是通过简单的这几道题我觉得开始慢慢养成敢自己动手，不遇题望而生畏，对于查资料也比原来更能甄别一些有用的东西还算微小的进步吧，希望自己能尽快做出其他题型，在做题中提高。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/02/做题的总结/" data-id="cjtztk59u0001pctods3cazuh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/01/some thoughts after reading_So you want to work in security/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/02/做题的总结/">做题的总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/01/some thoughts after reading_So you want to work in security/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
