@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>20190422做题总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="20190422做题总结1. RSA2首先对pubkey.pem进行信息提取1openssl rsa -pubin -text -modulus -in pubkey.pem 得到n和e对n在http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)此时已知p，q，e即可得到d为12345678910111213">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20190422做题总结">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/20190422做题总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="20190422做题总结1. RSA2首先对pubkey.pem进行信息提取1openssl rsa -pubin -text -modulus -in pubkey.pem 得到n和e对n在http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)此时已知p，q，e即可得到d为12345678910111213">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/eFJzzl3.png">
+<meta property="og:image" content="https://i.imgur.com/kkQ8trw.png">
+<meta property="og:image" content="https://i.imgur.com/qFGmU3B.png">
+<meta property="og:image" content="https://i.imgur.com/zQaStkg.png">
+<meta property="og:image" content="https://i.imgur.com/S2BNdxu.png">
+<meta property="og:image" content="https://i.imgur.com/AXjuGyr.png">
+<meta property="og:image" content="https://i.imgur.com/WyyviDM.png">
+<meta property="og:image" content="https://i.imgur.com/LmmMFEo.png">
+<meta property="og:image" content="https://i.imgur.com/sxMp9Us.png">
+<meta property="og:image" content="https://i.imgur.com/ljNw0Ta.png">
+<meta property="og:image" content="https://i.imgur.com/nAltjDV.png">
+<meta property="og:updated_time" content="2019-04-22T07:52:16.868Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="20190422做题总结">
+<meta name="twitter:description" content="20190422做题总结1. RSA2首先对pubkey.pem进行信息提取1openssl rsa -pubin -text -modulus -in pubkey.pem 得到n和e对n在http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)此时已知p，q，e即可得到d为12345678910111213">
+<meta name="twitter:image" content="https://i.imgur.com/eFJzzl3.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20190422做题总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/22/20190422做题总结/" class="article-date">
+  <time datetime="2019-04-22T07:51:34.000Z" itemprop="datePublished">2019-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      20190422做题总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="20190422做题总结"><a href="#20190422做题总结" class="headerlink" title="20190422做题总结"></a>20190422做题总结</h1><h2 id="1-RSA2"><a href="#1-RSA2" class="headerlink" title="1. RSA2"></a>1. RSA2</h2><h3 id="首先对pubkey-pem进行信息提取"><a href="#首先对pubkey-pem进行信息提取" class="headerlink" title="首先对pubkey.pem进行信息提取"></a>首先对pubkey.pem进行信息提取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsa -pubin -text -modulus -in pubkey.pem</span><br></pre></td></tr></table></figure>
+<h3 id="得到n和e"><a href="#得到n和e" class="headerlink" title="得到n和e"></a>得到n和e<img src="https://i.imgur.com/eFJzzl3.png" alt="Imgur"></h3><h3 id="对n在http-factordb-com-进行在线分解，得p，q-Imgur-https-i-imgur-com-nog6NnU-png"><a href="#对n在http-factordb-com-进行在线分解，得p，q-Imgur-https-i-imgur-com-nog6NnU-png" class="headerlink" title="对n在http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)"></a>对n在<a href="http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)" target="_blank" rel="noopener">http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)</a></h3><h3 id="此时已知p，q，e即可得到d为"><a href="#此时已知p，q，e即可得到d为" class="headerlink" title="此时已知p，q，e即可得到d为"></a>此时已知p，q，e即可得到d为</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># coding = utf-8</span><br><span class="line">def computeD(fn, e):</span><br><span class="line">    (x, y, r) = extendedGCD(fn, e)</span><br><span class="line">    #y maybe &lt; 0, so convert it</span><br><span class="line">    if y &lt; 0:</span><br><span class="line">        return fn + y</span><br><span class="line">    return y</span><br><span class="line"> </span><br><span class="line">def extendedGCD(a, b):</span><br><span class="line">    #a*xi + b*yi = ri</span><br><span class="line">    if b == 0:</span><br><span class="line">        return (1, 0, a)</span><br><span class="line">    #a*x1 + b*y1 = a</span><br><span class="line">    x1 = 1</span><br><span class="line">    y1 = 0</span><br><span class="line">    #a*x2 + b*y2 = b</span><br><span class="line">    x2 = 0</span><br><span class="line">    y2 = 1</span><br><span class="line">    while b != 0:</span><br><span class="line">        q = a / b</span><br><span class="line">        #ri = r(i-2) % r(i-1)</span><br><span class="line">        r = a % b</span><br><span class="line">        a = b</span><br><span class="line">        b = r</span><br><span class="line">        #xi = x(i-2) - q*x(i-1)</span><br><span class="line">        x = x1 - q*x2</span><br><span class="line">        x1 = x2</span><br><span class="line">        x2 = x</span><br><span class="line">        #yi = y(i-2) - q*y(i-1)</span><br><span class="line">        y = y1 - q*y2</span><br><span class="line">        y1 = y2</span><br><span class="line">        y2 = y</span><br><span class="line">    return(x1, y1, a)</span><br><span class="line"> </span><br><span class="line">p = 275127860351348928173285174381581152299</span><br><span class="line">q = 319576316814478949870590164193048041239</span><br><span class="line">e = 65537</span><br><span class="line"> </span><br><span class="line">n = p * q</span><br><span class="line">fn = (p - 1) * (q - 1)</span><br><span class="line"> </span><br><span class="line">d = computeD(fn, e)</span><br><span class="line">print d</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果如下"><a href="#运行结果如下" class="headerlink" title="运行结果如下"></a>运行结果如下</h3><p><img src="https://i.imgur.com/kkQ8trw.png" alt="Imgur"></p>
+<h3 id="此时d已知，即可对flag-encrypt这一密文先进行读取："><a href="#此时d已知，即可对flag-encrypt这一密文先进行读取：" class="headerlink" title="此时d已知，即可对flag.encrypt这一密文先进行读取："></a>此时d已知，即可对flag.encrypt这一密文先进行读取：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;f = open(&apos;flag.encrypt&apos;)</span><br><span class="line">&gt;&gt;p = f.read()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/qFGmU3B.png" alt="Imgur"></p>
+<h3 id="即可看到密文内容，接着对密文内容进行16进制编码："><a href="#即可看到密文内容，接着对密文内容进行16进制编码：" class="headerlink" title="即可看到密文内容，接着对密文内容进行16进制编码："></a>即可看到密文内容，接着对密文内容进行16进制编码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;p.encode(&apos;hex&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="就得到它16进制的形式：8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb"><a href="#就得到它16进制的形式：8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb" class="headerlink" title="就得到它16进制的形式：8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb"></a>就得到它16进制的形式：8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb</h3><h3 id="在转换为字符串，即为c："><a href="#在转换为字符串，即为c：" class="headerlink" title="在转换为字符串，即为c："></a>在转换为字符串，即为c：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;c=0x8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb</span><br><span class="line">&gt;&gt;print c</span><br></pre></td></tr></table></figure>
+<h3 id="现在利用公式pow（c，d，n）就可以得到明文十进制形式"><a href="#现在利用公式pow（c，d，n）就可以得到明文十进制形式" class="headerlink" title="现在利用公式pow（c，d，n）就可以得到明文十进制形式"></a>现在利用公式pow（c，d，n）就可以得到明文十进制形式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;d = 10866948760844599168252082612378495977388271279679231539839049698621994994673</span><br><span class="line"></span><br><span class="line">&gt;&gt;n = 87924348264132406875276140514499937145050893665602592992418171647042491658461</span><br><span class="line"></span><br><span class="line">&gt;&gt;pow(c.d.n)</span><br></pre></td></tr></table></figure>
+<h3 id="十进制形式无法进行编码，故要转换为16进制-利用hex："><a href="#十进制形式无法进行编码，故要转换为16进制-利用hex：" class="headerlink" title="十进制形式无法进行编码，故要转换为16进制,利用hex："></a>十进制形式无法进行编码，故要转换为16进制,利用hex：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;pp = 10786438895796771334553405582542071004794259807619608563847580041597</span><br><span class="line">&gt;&gt;hex(pp)</span><br></pre></td></tr></table></figure>
+<h3 id="最后解密可得flag："><a href="#最后解密可得flag：" class="headerlink" title="最后解密可得flag："></a>最后解密可得flag：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;s=&apos;666c61677b5930755f6d34795f754e6433727374616e645f5253417d&apos;</span><br><span class="line">&gt;&gt;s.decode(&apos;hex&apos;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/zQaStkg.png" alt="Imgur"></p>
+<hr>
+<h2 id="Wiener-Tricky"><a href="#Wiener-Tricky" class="headerlink" title="Wiener Tricky"></a>Wiener Tricky</h2><h3 id="首先同上对rsa-pub-pem进行信息提取，再对n进行分解，发现n太大无法分解。根据题目，可知要采取维纳攻击，在网上查找到相关的代码，https-github-com-pablocelayes-rsa-wiener-attack-后下载所有代码于桌面，运行程序可得解密密钥d"><a href="#首先同上对rsa-pub-pem进行信息提取，再对n进行分解，发现n太大无法分解。根据题目，可知要采取维纳攻击，在网上查找到相关的代码，https-github-com-pablocelayes-rsa-wiener-attack-后下载所有代码于桌面，运行程序可得解密密钥d" class="headerlink" title="首先同上对rsa_pub.pem进行信息提取，再对n进行分解，发现n太大无法分解。根据题目，可知要采取维纳攻击，在网上查找到相关的代码，https://github.com/pablocelayes/rsa-wiener-attack 后下载所有代码于桌面，运行程序可得解密密钥d:"></a>首先同上对rsa_pub.pem进行信息提取，再对n进行分解，发现n太大无法分解。根据题目，可知要采取维纳攻击，在网上查找到相关的代码，<a href="https://github.com/pablocelayes/rsa-wiener-attack" target="_blank" rel="noopener">https://github.com/pablocelayes/rsa-wiener-attack</a> 后下载所有代码于桌面，运行程序可得解密密钥d:</h3><p> <img src="https://i.imgur.com/S2BNdxu.png" alt="Imgur"></p>
+<h3 id="接下来步骤同上题，提取flag-enc文件内容"><a href="#接下来步骤同上题，提取flag-enc文件内容" class="headerlink" title="接下来步骤同上题，提取flag.enc文件内容"></a>接下来步骤同上题，提取flag.enc文件内容</h3><p> <img src="https://i.imgur.com/AXjuGyr.png" alt="Imgur"></p>
+<h3 id="进行16进制编码，再转为10进制c"><a href="#进行16进制编码，再转为10进制c" class="headerlink" title="进行16进制编码，再转为10进制c:"></a>进行16进制编码，再转为10进制c:</h3><p> <img src="https://i.imgur.com/WyyviDM.png" alt="Imgur"></p>
+<h3 id="现已知c，d，n，即可求明文pp："><a href="#现已知c，d，n，即可求明文pp：" class="headerlink" title="现已知c，d，n，即可求明文pp："></a>现已知c，d，n，即可求明文pp：</h3><p> <img src="https://i.imgur.com/LmmMFEo.png" alt="Imgur"></p>
+<h3 id="将明文变为16进制后在解密即得flag"><a href="#将明文变为16进制后在解密即得flag" class="headerlink" title="将明文变为16进制后在解密即得flag"></a>将明文变为16进制后在解密即得flag</h3><p> <img src="https://i.imgur.com/sxMp9Us.png" alt="Imgur"><br> <img src="https://i.imgur.com/ljNw0Ta.png" alt="Imgur"></p>
+<blockquote>
+<h3 id="但这时发现报错TypeError-Odd-length-string"><a href="#但这时发现报错TypeError-Odd-length-string" class="headerlink" title="但这时发现报错TypeError: Odd-length string"></a>但这时发现报错TypeError: Odd-length string</h3></blockquote>
+<h3 id="经过搜索得知错误原因为字符串长度为奇数-一位16进制数转换为4位二进制数-所以奇数个16进制数无法刚好转换为整数个字节。而高位的0经常被省略，所以在高位补零后得到flag："><a href="#经过搜索得知错误原因为字符串长度为奇数-一位16进制数转换为4位二进制数-所以奇数个16进制数无法刚好转换为整数个字节。而高位的0经常被省略，所以在高位补零后得到flag：" class="headerlink" title="经过搜索得知错误原因为字符串长度为奇数, 一位16进制数转换为4位二进制数, 所以奇数个16进制数无法刚好转换为整数个字节。而高位的0经常被省略，所以在高位补零后得到flag："></a>经过搜索得知错误原因为字符串长度为奇数, 一位16进制数转换为4位二进制数, 所以奇数个16进制数无法刚好转换为整数个字节。而高位的0经常被省略，所以在高位补零后得到flag：</h3><p><img src="https://i.imgur.com/nAltjDV.png" alt="Imgur"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/22/20190422做题总结/" data-id="cjus2bxbv0001ootoxw0u67hd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/19/post/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">post</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/20190419进度/">20190419进度</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/20190419进度/" style="font-size: 10px;">20190419进度</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/22/20190422做题总结/">20190422做题总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/19/post/">post</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/17/20190417学习进度/">20190417学习进度</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/15/20190415学习记录/">20190415学习记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/13/20190913进度/">20190913进度</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
