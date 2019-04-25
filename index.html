@@ -62,6 +62,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20190425进度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/25/20190425进度/" class="article-date">
+  <time datetime="2019-04-25T12:18:30.000Z" itemprop="datePublished">2019-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/25/20190425进度/">20190425进度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="20190425进度"><a href="#20190425进度" class="headerlink" title="20190425进度"></a>20190425进度</h1><h2 id="Forensics1"><a href="#Forensics1" class="headerlink" title="Forensics1"></a>Forensics1</h2><h3 id="用wireshake-打开文件，分析http部分"><a href="#用wireshake-打开文件，分析http部分" class="headerlink" title="用wireshake 打开文件，分析http部分:"></a>用wireshake 打开文件，分析http部分:</h3><p><img src="https://i.imgur.com/jlZdhen.png" alt="Imgur"></p>
+<h3 id="可以看到传送的内容是一张png图片"><a href="#可以看到传送的内容是一张png图片" class="headerlink" title="可以看到传送的内容是一张png图片:"></a>可以看到传送的内容是一张png图片:</h3><p><img src="https://i.imgur.com/fHTaMPk.png" alt="Imgur"></p>
+<h3 id="png图片文件头标志是8950-4e47-0d0a-1a0a，故对原始数据内以8950-4e47-0d0a-1a0a开头的部分进行截取即为图片部分："><a href="#png图片文件头标志是8950-4e47-0d0a-1a0a，故对原始数据内以8950-4e47-0d0a-1a0a开头的部分进行截取即为图片部分：" class="headerlink" title="png图片文件头标志是8950 4e47 0d0a 1a0a，故对原始数据内以8950 4e47 0d0a 1a0a开头的部分进行截取即为图片部分："></a>png图片文件头标志是8950 4e47 0d0a 1a0a，故对原始数据内以8950 4e47 0d0a 1a0a开头的部分进行截取即为图片部分：</h3><p><img src="https://i.imgur.com/JfaeROK.png" alt="Imgur"></p>
+<h3 id="将图片部分以原始数据截取下来后进行处理，先将数据以png格式保存"><a href="#将图片部分以原始数据截取下来后进行处理，先将数据以png格式保存" class="headerlink" title="将图片部分以原始数据截取下来后进行处理，先将数据以png格式保存"></a>将图片部分以原始数据截取下来后进行处理，先将数据以png格式保存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;pc.png&apos;,&apos;wb&apos;)#文件以二进制写模式打开</span><br><span class="line">s =&apos;89504e470d0a1a0a0000000d49484452000000c8000000c80802000000223a39c9000005104944415478daedd9516ed34800c7e140d5f78a7b0097e08d23a00a55ea05ca41ca059050857a04de7a89967b54483c2228b33bda617662bb21c9bf80f47d0fabc64decf1f8e771b63cbabbbb5bc1be3d121609c222425844088b086111212c22844584b088101611c222425844088b086111212c228445c4cfb0be7dfb767878587ffefaf5ebc1c1c1e3c78febcbefdfbf6f7d80ba93dbdbdba3a3a385b77dfaf4e9f9f3e7db1d6897717efefcf9e3c78faf5ebdda7d2aff46272727171717f75e9d2dfc0cebf2f2f2d9b3674f9f3eed7f5d6bdb3aac92cbcdcdcd26976d97b07619e75c58933bdc71367eafb9c19719383b3b7bfffefd7e0ff733ac12efdbb76f8772779ccac9581f72d6ee25acd5bf4bfede4fea9fb0ea7ad8367df8f0a14df4fa68da7367d53d7a4a40c7c7c76d7b7d92aea6c2aa2bd3f0b6f5675919d29b376fca3bafafafebfbcbaf6a0457575775b4ede393e3ec0fb4306b759fe5873afebacf61425ebf7e5d6ee8c98d0b439abc7eed74da244f8eb3df58dfd9df00fd73e0de8f2f9c513cac762d7f69c56aa7d7afa54349e5e5cb972ffb7dce9dc370a03298172f5e94cf3e79f2a44ccde9e9e9bb77efbe7cf9525ed62f04e5e8e7e7e76d76868ff7976179a92fbf6dfb2ca32d5beaa7365cb1fa8f0f439a0bab4e4e9d87c971d67dd6a3f493bc1ed6dc694e4ef2f28ab57c4b3c4458fde2d46ea6f5b0fa19ef7738f76d713dac3298f243dd737959c36af338bc7f78d9dfb2abb51b74086b7225d83cacb9214d5ebfe1b793e3ec6fcee5b0e64e7372929787573e52febbc76f5abf1656df507f19dab36cb88493fb5cfd57677fe6fb0d6bf3ef76bf37acc9716e1ed6f2690e93fc47af58fd6a5f465357acb2b1bc9c3cbd85331ffe87f157c3ea1f5baba91ba03d4d96cd853537ddc3c6fee3c39026afdf30a4c971b649ae27353c16868dcba7b9c919ad1ef83b56ff67adaa1ebb2d4ee5ebc2fa8ab5faff77ff21ac619f758793079a0babcc637d4f5b1ae7c6d93f26da379b750b61b53df4cbf0b0b15eda61487326afdfe438db77edb2deb4e1b58dfdccaf7f7c729217ce68950e6b6bc39ddadf16fbfd73c31ff8c7ccf49036ff43e02efe82b086c579bff322acd02964ff40bab561ed1d9ee27bfc47835dae62ffcc6aee7d786d31a4fd1e281dd643fc930eec91b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222425844088b086111212c22844584b088101611c222e20759b4e8cb3d42ad580000000049454e44ae426082&apos;</span><br><span class="line">f = write(s.decode(&apos;hex&apos;))</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<h3 id="图片内即为flag"><a href="#图片内即为flag" class="headerlink" title="图片内即为flag"></a>图片内即为flag</h3><p><img src="https://i.imgur.com/Ru1gpDc.png" alt="Imgur"></p>
+<hr>
+<h2 id="Invisible-flag"><a href="#Invisible-flag" class="headerlink" title="Invisible flag"></a>Invisible flag</h2><h3 id="打开图片后发现长度不够，内容显示不全，通过010editor分析，可知图片的16进制编码格式"><a href="#打开图片后发现长度不够，内容显示不全，通过010editor分析，可知图片的16进制编码格式" class="headerlink" title="打开图片后发现长度不够，内容显示不全，通过010editor分析，可知图片的16进制编码格式:"></a>打开图片后发现长度不够，内容显示不全，通过010editor分析，可知图片的16进制编码格式:</h3><p><img src="https://i.imgur.com/Vjz6U1W.png" alt="Imgur"></p>
+<h3 id="除了png文件头标志外接下来的地方就是IHDR数据块："><a href="#除了png文件头标志外接下来的地方就是IHDR数据块：" class="headerlink" title="除了png文件头标志外接下来的地方就是IHDR数据块："></a>除了png文件头标志外接下来的地方就是IHDR数据块：</h3><h3 id="0000-000d为IHDR头块长"><a href="#0000-000d为IHDR头块长" class="headerlink" title="0000 000d为IHDR头块长"></a>0000 000d为IHDR头块长</h3><h3 id="4948-4452IHDR标识"><a href="#4948-4452IHDR标识" class="headerlink" title="4948 4452IHDR标识"></a>4948 4452IHDR标识</h3><h3 id="0000-0234图像的宽"><a href="#0000-0234图像的宽" class="headerlink" title="0000 0234图像的宽"></a>0000 0234图像的宽</h3><h3 id="0000-0190图像的高"><a href="#0000-0190图像的高" class="headerlink" title="0000 0190图像的高"></a>0000 0190图像的高</h3><h3 id="图片是一个564-400的图片，试着用tweakpng将图片高修改到564时即得flag"><a href="#图片是一个564-400的图片，试着用tweakpng将图片高修改到564时即得flag" class="headerlink" title="图片是一个564*400的图片，试着用tweakpng将图片高修改到564时即得flag"></a>图片是一个564*400的图片，试着用tweakpng将图片高修改到564时即得flag</h3><p><img src="https://i.imgur.com/EUUhMPr.png" alt="Imgur"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/25/20190425进度/" data-id="cjuwm70tb0003fotozuse0naw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20190424进度" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/24/20190424进度/" class="article-date">
@@ -93,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/24/20190424进度/" data-id="cjuvcfc5s0002zktoineppbj4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/24/20190424进度/" data-id="cjuwm70t70001foto30efu7bo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -149,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/22/20190422做题总结/" data-id="cjuvcfc5l0000zktoism297jq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/22/20190422做题总结/" data-id="cjuwm70sz0000fotowk2xvqbq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -185,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/19/post/" data-id="cjuvcfc5y0006zktosgb8lgmg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/19/post/" data-id="cjuwm70tc0004fotogxdmfr9z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/20190419进度/">20190419进度</a></li></ul>
@@ -223,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/17/20190417学习进度/" data-id="cjuvcfc5q0001zktok5czwg6y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/17/20190417学习进度/" data-id="cjuwm70t90002fotofpcfsjwg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -259,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/20190415学习记录/" data-id="cjuvcfc5v0004zktooguxh7ie" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/20190415学习记录/" data-id="cjuwm70tr0009fotoznjxzypg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -295,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/13/20190913进度/" data-id="cjuvcfc5x0005zktoxwrksnos" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/13/20190913进度/" data-id="cjuwm70tl0007fotouv7vqotl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -331,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/学习进度/" data-id="cjuvcfc6f000bzktojnpzfcur" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/学习进度/" data-id="cjuwm70to0008fotohqpjko18" class="article-share-link">Share</a>
       
       
     </footer>
@@ -372,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/进度总结/" data-id="cjuvcfc6g000czktoz0f8hjit" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/进度总结/" data-id="cjuwm70tu000bfoto29nq48mp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -415,46 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/03/Hexo-Github搭建博客/" data-id="cjuvcfc5u0003zktolw902kw8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-做题的总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/02/做题的总结/" class="article-date">
-  <time datetime="2019-04-02T12:43:45.000Z" itemprop="datePublished">2019-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/02/做题的总结/">做题的总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。"><a href="#h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。" class="headerlink" title="h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。"></a>h2这一段时间在补编程方面的一些知识还花了小半天修改博客，题断断续续做了几道，算是对CTF解题稍有了一些些了解，也同时深以为路漫漫其修远兮。这篇博客想把自己做的为数不多的几道题总结一下。</h2><p> 首先misc作为最好入手的类型，我首先做了signin和poem，这两道就是让我们了解了提交flag的标准格式：flag{**}。而poem则是简单的下载提供的图片看图得答案。<br> 接下来是LSB和docx这两道题。LSB这道题给了很多hint，我首先在网上搜索了LSB，了解了LSB最低有效位在CTF中有一种题型叫做LSB隐写，简单讲就是修改RGB颜色分量的最低二进制位，写入加密信息，而人眼无法注意到前后的变化。接下来就下载了能帮助我们解决LSB隐写的Stegsolve，用它打开图片转换不同的频道，最后得到下图：<br> <img src="https://i.imgur.com/5bHNSLP.png" alt="Imgur"><br> 扫描二维码得到了flag。<br>docx这道题在搜索得知docx实质为一个zip文件时，我尝试将文件的格式改为.zip，之后在文件夹中得到了flag所在的文件：<br><img src="https://i.imgur.com/HBZXeOV.png" alt="Imgur">打开flag.xml，即为所求。<br>今天做了一道crypto题，what’s the RSA ，RSA顾名思义既非对称加密，之前所理解的非对称加密，公钥私钥仅仅停留在理论阶段，面对一道RSA题，首先看到所给的是密文和私钥，那么思路就是利用私钥来解密文即可，在搜索了一些RSA题的做法后，我首先是在ubuntu下下载了openssl，他是专门用来加密解密的一个软件，接下来在终端下rsa_private_key.pem文件所在路径下，利用<code>openssl rsa -in private.pem -text -modulus</code>得到了私钥，接下来把这个私钥存在名为private.key里和flag.encrypt放在桌面下，再进行解密，根据我看的文章，不同填充方式对应不同语句执行，我这里尝试了<code>openssl rsautl -decrypt -in flag.encrypt -private.key -out flag.de</code>后，在桌面生成了一个flag.de文件，即为所求。<br><img src="https://i.imgur.com/1acUxc8.png" alt="Imgur"></p>
-<hr>
-<p><strong>现在做题的不管质量都亟待提高，但是通过简单的这几道题我觉得开始慢慢养成敢自己动手，不遇题望而生畏，对于查资料也比原来更能甄别一些有用的东西还算微小的进步吧，希望自己能尽快做出其他题型，在做题中提高。</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/02/做题的总结/" data-id="cjuvcfc660009zktoqcthn41c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/03/Hexo-Github搭建博客/" data-id="cjuwm70tx000dfoto1fvp59vs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -514,6 +519,10 @@
       <ul>
         
           <li>
+            <a href="/2019/04/25/20190425进度/">20190425进度</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/24/20190424进度/">20190424进度</a>
           </li>
         
@@ -527,10 +536,6 @@
         
           <li>
             <a href="/2019/04/17/20190417学习进度/">20190417学习进度</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/15/20190415学习记录/">20190415学习记录</a>
           </li>
         
       </ul>
