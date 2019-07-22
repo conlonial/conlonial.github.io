@@ -1,17 +1,89 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
+
+
 
   
-  <title>Hexo+Github搭建博客 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题….同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。安装Node.js首先下载最新版Node.js，安装选项全为Nex">
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题….同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。安装Node.js首先下载最新版Node.js，安装选项全为Nex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo+Github搭建博客">
 <meta property="og:url" content="http://yoursite.com/2019/04/03/Hexo-Github搭建博客/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Conlonial&#39;s blog">
 <meta property="og:description" content="前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题….同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。安装Node.js首先下载最新版Node.js，安装选项全为Nex">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.imgur.com/sYygd6W.png">
@@ -31,73 +103,214 @@
 <meta name="twitter:title" content="Hexo+Github搭建博客">
 <meta name="twitter:description" content="前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题….同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。安装Node.js首先下载最新版Node.js，安装选项全为Nex">
 <meta name="twitter:image" content="https://i.imgur.com/sYygd6W.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Hexo-Github搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/03/Hexo-Github搭建博客/" class="article-date">
-  <time datetime="2019-04-03T03:12:15.000Z" itemprop="datePublished">2019-04-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Hexo+Github搭建博客
-    </h1>
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/03/Hexo-Github搭建博客/">
+
+
+
+
+
+  <title>Hexo+Github搭建博客 | Conlonial's blog</title>
   
 
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Conlonial's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/Hexo-Github搭建博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conlonial">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Conlonial's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hexo+Github搭建博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-03T11:12:15+08:00">
+                2019-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h2 id="前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题…-同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。"><a href="#前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题…-同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。" class="headerlink" title="前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题….同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。"></a>前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题….同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。</h2><h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><h3 id="首先下载最新版Node-js，安装选项全为Next，安装好后按win-R打开命令提示符，输入node-v和npm-v，如果出现版本号就是安装成功。"><a href="#首先下载最新版Node-js，安装选项全为Next，安装好后按win-R打开命令提示符，输入node-v和npm-v，如果出现版本号就是安装成功。" class="headerlink" title="首先下载最新版Node.js，安装选项全为Next，安装好后按win+R打开命令提示符，输入node -v和npm -v，如果出现版本号就是安装成功。"></a>首先下载最新版Node.js，安装选项全为Next，安装好后按<code>win+R</code>打开命令提示符，输入<code>node -v</code>和<code>npm -v</code>，如果出现版本号就是安装成功。</h3><h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><h3 id="为了把本地的网页文件上传到github上面去，我们需要用到分布式版本控制工具Git。安装选项还是全部默认。安装完成后还是在在命令提示符中输入git-–version验证是否安装成功。安装好后在任何文件夹下右击均可看到Git-Bash-here。"><a href="#为了把本地的网页文件上传到github上面去，我们需要用到分布式版本控制工具Git。安装选项还是全部默认。安装完成后还是在在命令提示符中输入git-–version验证是否安装成功。安装好后在任何文件夹下右击均可看到Git-Bash-here。" class="headerlink" title="为了把本地的网页文件上传到github上面去，我们需要用到分布式版本控制工具Git。安装选项还是全部默认。安装完成后还是在在命令提示符中输入git –version验证是否安装成功。安装好后在任何文件夹下右击均可看到Git Bash here。"></a>为了把本地的网页文件上传到github上面去，我们需要用到分布式版本控制工具Git。安装选项还是全部默认。安装完成后还是在在命令提示符中输入git –version验证是否安装成功。安装好后在任何文件夹下右击均可看到<code>Git Bash here</code>。</h3><h2 id="在github新建项目"><a href="#在github新建项目" class="headerlink" title="在github新建项目"></a>在github新建项目</h2><h3 id="打开github-在右边找到repository，"><a href="#打开github-在右边找到repository，" class="headerlink" title="打开github,在右边找到repository，"></a>打开github,在右边找到repository，<img src="https://i.imgur.com/sYygd6W.png" alt="Imgur"></h3><p><img src="https://i.imgur.com/UiDKE0q.png" alt="Imgur">注意name格式为<code>username.github.io</code></p>
 <h3 id="然后项目就建成了，点击Settings，向下拉到最后有个GitHub-Pages，点击Choose-a-theme选择一个主题。然后等一会儿，再回到GitHub-Pages，点击链接进入博客可见如下图"><a href="#然后项目就建成了，点击Settings，向下拉到最后有个GitHub-Pages，点击Choose-a-theme选择一个主题。然后等一会儿，再回到GitHub-Pages，点击链接进入博客可见如下图" class="headerlink" title="然后项目就建成了，点击Settings，向下拉到最后有个GitHub Pages，点击Choose a theme选择一个主题。然后等一会儿，再回到GitHub Pages，点击链接进入博客可见如下图"></a>然后项目就建成了，点击Settings，向下拉到最后有个GitHub Pages，点击Choose a theme选择一个主题。然后等一会儿，再回到GitHub Pages，点击链接进入博客可见如下图<img src="https://i.imgur.com/Im6sO2C.jpg" alt="Imgur"></h3><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><h3 id="选择一个路径新建一个文件夹来放博客文件，比如我的C-study-blog，在该目录下右键点击Git-Bash-Here，打开git的控制台窗口，以后我们所有的操作都在git控制台进行，就不要用Windows自带的控制台了。"><a href="#选择一个路径新建一个文件夹来放博客文件，比如我的C-study-blog，在该目录下右键点击Git-Bash-Here，打开git的控制台窗口，以后我们所有的操作都在git控制台进行，就不要用Windows自带的控制台了。" class="headerlink" title="选择一个路径新建一个文件夹来放博客文件，比如我的C:\study\blog，在该目录下右键点击Git Bash Here，打开git的控制台窗口，以后我们所有的操作都在git控制台进行，就不要用Windows自带的控制台了。"></a>选择一个路径新建一个文件夹来放博客文件，比如我的<code>C:\study\blog</code>，在该目录下右键点击Git Bash Here，打开git的控制台窗口，以后我们所有的操作都在git控制台进行，就不要用Windows自带的控制台了。</h3><h3 id="首先利用cd定位到该目录下，输入npm-install-hexo-cli-g安装Hexo。会有几个报错，无视它就行。然后输入npm-install-hexo-save继续安装。安装完后输入hexo-v验证是否安装成功。首先说一下这个安装过程是有些久的，但是在安装时候大家如果发现安装太过慢（比如过了20min完全没有新进度，我就遇到了，傻傻等了30min）大家可以关闭控制台，再重新输入指令下载会好一些。然后就要初始化我们的网站，输入hexo-init初始化文件夹，接着输入npm-install和npm-install-hexo-server-save安装必备的组件。这样本地的网站配置也弄好啦，输入hexo-g生成静态网页，然后输入hexo-s打开本地服务器，然后浏览器打开http-localhost-4000-，就可以看到我们的博客啦，效果如下-Imgur-https-i-imgur-com-6BUXuYT-png"><a href="#首先利用cd定位到该目录下，输入npm-install-hexo-cli-g安装Hexo。会有几个报错，无视它就行。然后输入npm-install-hexo-save继续安装。安装完后输入hexo-v验证是否安装成功。首先说一下这个安装过程是有些久的，但是在安装时候大家如果发现安装太过慢（比如过了20min完全没有新进度，我就遇到了，傻傻等了30min）大家可以关闭控制台，再重新输入指令下载会好一些。然后就要初始化我们的网站，输入hexo-init初始化文件夹，接着输入npm-install和npm-install-hexo-server-save安装必备的组件。这样本地的网站配置也弄好啦，输入hexo-g生成静态网页，然后输入hexo-s打开本地服务器，然后浏览器打开http-localhost-4000-，就可以看到我们的博客啦，效果如下-Imgur-https-i-imgur-com-6BUXuYT-png" class="headerlink" title="首先利用cd定位到该目录下，输入npm install hexo-cli -g安装Hexo。会有几个报错，无视它就行。然后输入npm install hexo --save继续安装。安装完后输入hexo -v验证是否安装成功。首先说一下这个安装过程是有些久的，但是在安装时候大家如果发现安装太过慢（比如过了20min完全没有新进度，我就遇到了，傻傻等了30min）大家可以关闭控制台，再重新输入指令下载会好一些。然后就要初始化我们的网站，输入hexo init初始化文件夹，接着输入npm install和npm install hexo-server --save安装必备的组件。这样本地的网站配置也弄好啦，输入hexo g生成静态网页，然后输入hexo s打开本地服务器，然后浏览器打开http://localhost:4000/，就可以看到我们的博客啦，效果如下![Imgur](https://i.imgur.com/6BUXuYT.png)"></a>首先利用<code>cd</code>定位到该目录下，输入<code>npm install hexo-cli -g</code>安装Hexo。会有几个报错，无视它就行。然后输入<code>npm install hexo --save</code>继续安装。安装完后输入<code>hexo -v</code>验证是否安装成功。首先说一下这个安装过程是有些久的，但是在安装时候大家如果发现安装太过慢（比如过了20min完全没有新进度，我就遇到了，傻傻等了30min）大家可以关闭控制台，再重新输入指令下载会好一些。然后就要初始化我们的网站，输入<code>hexo init</code>初始化文件夹，接着输入<code>npm install</code>和<code>npm install hexo-server --save</code>安装必备的组件。这样本地的网站配置也弄好啦，输入<code>hexo g</code>生成静态网页，然后输入<code>hexo s</code>打开本地服务器，然后浏览器打开<a href="http://localhost:4000/，就可以看到我们的博客啦，效果如下![Imgur](https://i.imgur.com/6BUXuYT.png)" target="_blank" rel="noopener">http://localhost:4000/，就可以看到我们的博客啦，效果如下![Imgur](https://i.imgur.com/6BUXuYT.png)</a></h3><h2 id="将github与本地相连"><a href="#将github与本地相连" class="headerlink" title="将github与本地相连"></a>将github与本地相连</h2><h3 id="首先右键打开git-bash，然后输入下面命令：git-config-global-user-name-quot-你的github用户名-quot-和git-config-global-user-email-quot-github绑定的邮箱-quot-。然后生成密钥SSH-key：ssh-keygen-t-rsa-C-quot-github绑定邮箱地址-quot-。接下来找到-ssh这个文件夹，我的在下图位置"><a href="#首先右键打开git-bash，然后输入下面命令：git-config-global-user-name-quot-你的github用户名-quot-和git-config-global-user-email-quot-github绑定的邮箱-quot-。然后生成密钥SSH-key：ssh-keygen-t-rsa-C-quot-github绑定邮箱地址-quot-。接下来找到-ssh这个文件夹，我的在下图位置" class="headerlink" title="首先右键打开git bash，然后输入下面命令：git config --global user.name &quot;你的github用户名&quot;和git config --global user.email &quot;github绑定的邮箱&quot;。然后生成密钥SSH key：ssh-keygen -t rsa -C &quot;github绑定邮箱地址&quot;。接下来找到.ssh这个文件夹，我的在下图位置"></a>首先右键打开git bash，然后输入下面命令：<code>git config --global user.name &quot;你的github用户名&quot;</code>和<code>git config --global user.email &quot;github绑定的邮箱&quot;</code>。然后生成密钥SSH key：<code>ssh-keygen -t rsa -C &quot;github绑定邮箱地址&quot;</code>。接下来找到.ssh这个文件夹，我的在下图位置<img src="https://i.imgur.com/TdDCp9i.png" alt="Imgur"></h3><h3 id="进入后打开id-rsa-pub（打开方式有sublime推荐这个或者word也可以），复制里面的内容，打开github，在头像下面点击settings，再点击SSH-and-GPG-keys，新建一个SSH，名字随便。把复制的内容复制到新建的SSH中。接下来再bash打开控制台输入ssh-T-git-github-com，如果如下图所示，出现你的用户名，那就成功了"><a href="#进入后打开id-rsa-pub（打开方式有sublime推荐这个或者word也可以），复制里面的内容，打开github，在头像下面点击settings，再点击SSH-and-GPG-keys，新建一个SSH，名字随便。把复制的内容复制到新建的SSH中。接下来再bash打开控制台输入ssh-T-git-github-com，如果如下图所示，出现你的用户名，那就成功了" class="headerlink" title="进入后打开id_rsa.pub（打开方式有sublime推荐这个或者word也可以），复制里面的内容，打开github，在头像下面点击settings，再点击SSH and GPG keys，新建一个SSH，名字随便。把复制的内容复制到新建的SSH中。接下来再bash打开控制台输入ssh -T git@github.com，如果如下图所示，出现你的用户名，那就成功了"></a>进入后打开<code>id_rsa.pub</code>（打开方式有sublime推荐这个或者word也可以），复制里面的内容，打开github，在头像下面点击settings，再点击SSH and GPG keys，新建一个SSH，名字随便。把复制的内容复制到新建的SSH中。<img src="https://i.imgur.com/DXq5F1K.png" alt="Imgur">接下来再bash打开控制台输入<code>ssh -T git@github.com，</code>如果如下图所示，出现你的用户名，那就成功了<img src="https://i.imgur.com/hFtUMdj.png" alt="Imgur"></h3><h3 id="打开你刚才新建的文件夹-用编辑器-打开-config-yml"><a href="#打开你刚才新建的文件夹-用编辑器-打开-config-yml" class="headerlink" title="打开你刚才新建的文件夹 用编辑器 打开 _config.yml"></a>打开你刚才新建的文件夹 用编辑器 打开 _config.yml</h3><p><img src="https://i.imgur.com/Zfhs0W5.png" alt="Imgur"></p>
@@ -109,136 +322,373 @@
 <h3 id="另外我在编辑时还遇到的问题有注意要使用英文输入符号，不然有时会出现问题。"><a href="#另外我在编辑时还遇到的问题有注意要使用英文输入符号，不然有时会出现问题。" class="headerlink" title="另外我在编辑时还遇到的问题有注意要使用英文输入符号，不然有时会出现问题。"></a>另外我在编辑时还遇到的问题有注意要使用英文输入符号，不然有时会出现问题。</h3><h3 id="删除博客先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。首先进入到source-post-文件夹中，找到要删除的-md文件，在本地直接执行删除。然后依次执行hexo-g，hexo-d，再去主页查看你就会发现你的博客已经删除啦。"><a href="#删除博客先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。首先进入到source-post-文件夹中，找到要删除的-md文件，在本地直接执行删除。然后依次执行hexo-g，hexo-d，再去主页查看你就会发现你的博客已经删除啦。" class="headerlink" title="删除博客先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。首先进入到source / _post 文件夹中，找到要删除的.md文件，在本地直接执行删除。然后依次执行hexo g，hexo d，再去主页查看你就会发现你的博客已经删除啦。"></a>删除博客先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。首先进入到source / _post 文件夹中，找到要删除的.md文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，再去主页查看你就会发现你的博客已经删除啦。</h3>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/03/Hexo-Github搭建博客/" data-id="cjv6okkwq000cu4toxf545bxs" class="article-share-link">Share</a>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/02/做题的总结/" rel="next" title="做题的总结">
+                <i class="fa fa-chevron-left"></i> 做题的总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/11/进度总结/" rel="prev" title="进度总结">
+                进度总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2019/04/11/进度总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-          进度总结
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Conlonial</p>
+              <p class="site-description motion-element" itemprop="description">recorder</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题…-同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。"><span class="nav-number">1.</span> <span class="nav-text">前天花了小半天时间完成了pages的搭建和博文上传，其实在这几天中一直在踩雷，网上的一些教程很多由于版本更新等等或多或少的不适用现在的情况、或者在文件上传中出现各种的问题….同时我也发现了身边很多人还是在用仓库作为简单博客，所以我想结合网上教程和我自己其中的经验写一篇简单的总结，希望这篇博客用来给自己提醒也分享这段经验给别人避雷吧。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Node-js"><span class="nav-number">2.</span> <span class="nav-text">安装Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先下载最新版Node-js，安装选项全为Next，安装好后按win-R打开命令提示符，输入node-v和npm-v，如果出现版本号就是安装成功。"><span class="nav-number">2.1.</span> <span class="nav-text">首先下载最新版Node.js，安装选项全为Next，安装好后按win+R打开命令提示符，输入node -v和npm -v，如果出现版本号就是安装成功。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Git"><span class="nav-number">3.</span> <span class="nav-text">安装Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为了把本地的网页文件上传到github上面去，我们需要用到分布式版本控制工具Git。安装选项还是全部默认。安装完成后还是在在命令提示符中输入git-–version验证是否安装成功。安装好后在任何文件夹下右击均可看到Git-Bash-here。"><span class="nav-number">3.1.</span> <span class="nav-text">为了把本地的网页文件上传到github上面去，我们需要用到分布式版本控制工具Git。安装选项还是全部默认。安装完成后还是在在命令提示符中输入git –version验证是否安装成功。安装好后在任何文件夹下右击均可看到Git Bash here。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在github新建项目"><span class="nav-number">4.</span> <span class="nav-text">在github新建项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打开github-在右边找到repository，"><span class="nav-number">4.1.</span> <span class="nav-text">打开github,在右边找到repository，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后项目就建成了，点击Settings，向下拉到最后有个GitHub-Pages，点击Choose-a-theme选择一个主题。然后等一会儿，再回到GitHub-Pages，点击链接进入博客可见如下图"><span class="nav-number">4.2.</span> <span class="nav-text">然后项目就建成了，点击Settings，向下拉到最后有个GitHub Pages，点击Choose a theme选择一个主题。然后等一会儿，再回到GitHub Pages，点击链接进入博客可见如下图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo"><span class="nav-number">5.</span> <span class="nav-text">安装Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择一个路径新建一个文件夹来放博客文件，比如我的C-study-blog，在该目录下右键点击Git-Bash-Here，打开git的控制台窗口，以后我们所有的操作都在git控制台进行，就不要用Windows自带的控制台了。"><span class="nav-number">5.1.</span> <span class="nav-text">选择一个路径新建一个文件夹来放博客文件，比如我的C:\study\blog，在该目录下右键点击Git Bash Here，打开git的控制台窗口，以后我们所有的操作都在git控制台进行，就不要用Windows自带的控制台了。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首先利用cd定位到该目录下，输入npm-install-hexo-cli-g安装Hexo。会有几个报错，无视它就行。然后输入npm-install-hexo-save继续安装。安装完后输入hexo-v验证是否安装成功。首先说一下这个安装过程是有些久的，但是在安装时候大家如果发现安装太过慢（比如过了20min完全没有新进度，我就遇到了，傻傻等了30min）大家可以关闭控制台，再重新输入指令下载会好一些。然后就要初始化我们的网站，输入hexo-init初始化文件夹，接着输入npm-install和npm-install-hexo-server-save安装必备的组件。这样本地的网站配置也弄好啦，输入hexo-g生成静态网页，然后输入hexo-s打开本地服务器，然后浏览器打开http-localhost-4000-，就可以看到我们的博客啦，效果如下-Imgur-https-i-imgur-com-6BUXuYT-png"><span class="nav-number">5.2.</span> <span class="nav-text">首先利用cd定位到该目录下，输入npm install hexo-cli -g安装Hexo。会有几个报错，无视它就行。然后输入npm install hexo --save继续安装。安装完后输入hexo -v验证是否安装成功。首先说一下这个安装过程是有些久的，但是在安装时候大家如果发现安装太过慢（比如过了20min完全没有新进度，我就遇到了，傻傻等了30min）大家可以关闭控制台，再重新输入指令下载会好一些。然后就要初始化我们的网站，输入hexo init初始化文件夹，接着输入npm install和npm install hexo-server --save安装必备的组件。这样本地的网站配置也弄好啦，输入hexo g生成静态网页，然后输入hexo s打开本地服务器，然后浏览器打开http://localhost:4000/，就可以看到我们的博客啦，效果如下![Imgur](https://i.imgur.com/6BUXuYT.png)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将github与本地相连"><span class="nav-number">6.</span> <span class="nav-text">将github与本地相连</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先右键打开git-bash，然后输入下面命令：git-config-global-user-name-quot-你的github用户名-quot-和git-config-global-user-email-quot-github绑定的邮箱-quot-。然后生成密钥SSH-key：ssh-keygen-t-rsa-C-quot-github绑定邮箱地址-quot-。接下来找到-ssh这个文件夹，我的在下图位置"><span class="nav-number">6.1.</span> <span class="nav-text">首先右键打开git bash，然后输入下面命令：git config --global user.name &quot;你的github用户名&quot;和git config --global user.email &quot;github绑定的邮箱&quot;。然后生成密钥SSH key：ssh-keygen -t rsa -C &quot;github绑定邮箱地址&quot;。接下来找到.ssh这个文件夹，我的在下图位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入后打开id-rsa-pub（打开方式有sublime推荐这个或者word也可以），复制里面的内容，打开github，在头像下面点击settings，再点击SSH-and-GPG-keys，新建一个SSH，名字随便。把复制的内容复制到新建的SSH中。接下来再bash打开控制台输入ssh-T-git-github-com，如果如下图所示，出现你的用户名，那就成功了"><span class="nav-number">6.2.</span> <span class="nav-text">进入后打开id_rsa.pub（打开方式有sublime推荐这个或者word也可以），复制里面的内容，打开github，在头像下面点击settings，再点击SSH and GPG keys，新建一个SSH，名字随便。把复制的内容复制到新建的SSH中。接下来再bash打开控制台输入ssh -T git@github.com，如果如下图所示，出现你的用户名，那就成功了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开你刚才新建的文件夹-用编辑器-打开-config-yml"><span class="nav-number">6.3.</span> <span class="nav-text">打开你刚才新建的文件夹 用编辑器 打开 _config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改最后一行的配置："><span class="nav-number">6.4.</span> <span class="nav-text">修改最后一行的配置：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写文章发博客"><span class="nav-number">7.</span> <span class="nav-text">写文章发博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先在博客根目录下右键打开git-bash，安装一个扩展npm-install-hexo-deployer-git-save。然后输入hexo-new-post-“article-title”，新建一篇文章。然后打开C-study-program-blog-source-posts的目录，可以发现下面多一个-md文件，用sublime打开它，如图"><span class="nav-number">7.1.</span> <span class="nav-text">首先在博客根目录下右键打开git bash，安装一个扩展npm install hexo-deployer-git --save。然后输入hexo new post “article title”，新建一篇文章。然后打开C:\study\program\blog\source_posts的目录，可以发现下面多一个.md文件，用sublime打开它，如图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这时候大家要注意！！hexo有一些md格式，错了会导致上传失败，见下图"><span class="nav-number">7.2.</span> <span class="nav-text">这时候大家要注意！！hexo有一些md格式，错了会导致上传失败，见下图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不管是tags、title他们后面的冒号后一定要有一个空格！"><span class="nav-number">7.3.</span> <span class="nav-text">不管是tags、title他们后面的冒号后一定要有一个空格！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写完markdown文件后，根目录下输入hexo-g生成静态网页，然后输入hexo-s可以本地预览效果，最后输入hexo-d上传到github上。这时打开你的github-io主页就能看到发布的文章啦。"><span class="nav-number">7.4.</span> <span class="nav-text">编写完markdown文件后，根目录下输入hexo g生成静态网页，然后输入hexo s可以本地预览效果，最后输入hexo d上传到github上。这时打开你的github.io主页就能看到发布的文章啦。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于编辑修改博客等"><span class="nav-number">8.</span> <span class="nav-text">关于编辑修改博客等</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先在博客中插入本地图片时，需要首先上传在图床，我用的是imgur，非常方便"><span class="nav-number">8.1.</span> <span class="nav-text">首先在博客中插入本地图片时，需要首先上传在图床，我用的是imgur，非常方便</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#另外我在编辑时还遇到的问题有注意要使用英文输入符号，不然有时会出现问题。"><span class="nav-number">8.2.</span> <span class="nav-text">另外我在编辑时还遇到的问题有注意要使用英文输入符号，不然有时会出现问题。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除博客先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。首先进入到source-post-文件夹中，找到要删除的-md文件，在本地直接执行删除。然后依次执行hexo-g，hexo-d，再去主页查看你就会发现你的博客已经删除啦。"><span class="nav-number">8.3.</span> <span class="nav-text">删除博客先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。首先进入到source / _post 文件夹中，找到要删除的.md文件，在本地直接执行删除。然后依次执行hexo g，hexo d，再去主页查看你就会发现你的博客已经删除啦。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2019/04/02/做题的总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">做题的总结</div>
-    </a>
-  
-</nav>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Conlonial</span>
 
   
-</article>
+</div>
 
-</section>
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
         
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/20190419进度/">20190419进度</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/20190419进度/" style="font-size: 10px;">20190419进度</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/05/02/20100502进度/">20100502进度</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/29/20190429进度/">20190429进度</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/28/post20190428进度/">post20190428进度</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/25/20190425进度/">20190425进度</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/24/20190424进度/">20190424进度</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
+
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
