@@ -232,6 +232,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/Rapid-Typing-fd-in-pwnable-col/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conlonial">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Conlonial's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/08/Rapid-Typing-fd-in-pwnable-col/" itemprop="url">Rapid Typing & fd in pwnable & col</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-08T18:28:26+08:00">
+                2019-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><center> Rapid Typing&amp; fd in pwnable &amp; col</center></p>
+<p><center> —– Rapid Typing—–</center></p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>python核心编程 15章正则表达式</li>
+<li>SVG代码转图片<blockquote>
+<p><a href="https://me.jinchuang.org/archives/392.html" target="_blank" rel="noopener">https://me.jinchuang.org/archives/392.html</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p> 思路参考calulator，不同点在本题所需输入的内容为svg图片，<br> svg部分截取： <img src="https://imgur.com/JBzbH3v" alt="Imgur"><br> 解码后：<img src="https://imgur.com/qt9AxGf" alt="Imgur"><br> 可见它的代码是xy的二维坐标，将svg图片代码段截取后，转为png图片后，可见，即为我们所求输入内容。<br> 按照x坐标排列后，可见<code>&gt;a-z 0-9&lt;</code> 内即为所求，按正则匹配：<br> <img src="https://imgur.com/T56th5w" alt="Imgur"><br>  再匹配去掉<code>&gt;&lt;</code> 化为字符串即可：<br> <img src="https://imgur.com/A7ZkQ5i" alt="Imgur"><br> 代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;le&gt; import requests</span><br><span class="line">import base64</span><br><span class="line">import re</span><br><span class="line">r = requests.get(&apos;http://123.207.149.64:23331/captcha/&apos;)</span><br><span class="line">&gt;  soup = BeautifulSoup(r.text,&apos;lxml&apos;)      </span><br><span class="line">p = soup.find(name=&apos;img&apos;) </span><br><span class="line">q = str(p)</span><br><span class="line">s= q[36:-4]           #把svg代码部分截出</span><br><span class="line">lens = len(s)</span><br><span class="line">lenx = lens - (lens % 4 if lens % 4 else 4)</span><br><span class="line">try:</span><br><span class="line">    result = base64.decodestring(s[:lenx])</span><br><span class="line">except:</span><br><span class="line">   pass   #10-15是解决base64解码直接decode出现的 TypeError: Incorrect padding错误 注：https://blog.csdn.net/lisai17/article/details/21091791</span><br><span class="line">anwser = BeautifulSoup(result,&apos;lxml&apos;)</span><br><span class="line">a = anwser.find_all(name=&apos;text&apos;)</span><br><span class="line">b = sorted(a,key=lambda x:int(x.get(&apos;x&apos;))) #对text内容以x大小为序排列</span><br><span class="line">c = &apos;&gt;\w&lt;&apos; #正则匹配出所有特定字符</span><br><span class="line">d = re.findall(c,str(b)) #注意正则匹配模式串还有要匹配的串必须是字符串类型，用str转换 </span><br><span class="line">g = re.findall(&apos;\w&apos;,str(d))</span><br><span class="line">h = &apos;&apos;.join(g) #把列表转化为字符串</span><br><span class="line">print h</span><br><span class="line">r = requests.get (&apos;http://123.207.149.64:23331/captcha/?code=&apos;+h, cookies=r.cookies)</span><br><span class="line">print r.text`</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><center>—–fd—–</center></p>
+<h3 id="参考：-1"><a href="#参考：-1" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>fd：文件描述符—标准输入(standard input)的文件描述符是 0，标准输出(standard output)是1,标准错误(standard error)是 2 .<blockquote>
+<p>注：<a href="https://blog.csdn.net/cywosp/article/details/38965239" target="_blank" rel="noopener">https://blog.csdn.net/cywosp/article/details/38965239</a></p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>read函数 ：ssize_t read(int fd,void * buf ,size_t count);<br>read()会把参数fd所指的文件传送nbyte个字节到buf指针所指的内存中。若参数nbyte为0，则read()不会有作用并返回0。返回值为实际读取到的字节数，如果返回0，表示已到达文件尾或无可读取的数据。错误返回-1,并将根据不同的错误原因适当的设置错误码。</li>
+</ul>
+<ul>
+<li><p>atoi函数：atoi() 函数用来将字符串转换成整数(int)，其原型为：int atoi (const char * str);【函数说明】atoi() 函数会扫描参数 str 字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过isspace()函数来检测），直到遇上数字或正负符号才开始做转换，而再遇到非数字或字符串结束时(‘\0’)才结束转换，并将结果返回。【返回值】返回转换后的整型数；如果 str 不能转换成 int 或者 str 为空字符串，那么将返回 0。</p>
+</li>
+<li><p>arec，argv[] int main(int argc,char *argv[]);第一个参数argc用来存放命令行参数的个数；第二个参数argv是指针数组，它是用来存放命令行中各个参数和命令字的字符串的。关于相关输入：要在执行文件语句后直接加赋值。</p>
+<blockquote>
+<p>例：<a href="https://blog.csdn.net/Eastmount/article/details/20413773" target="_blank" rel="noopener">https://blog.csdn.net/Eastmount/article/details/20413773</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>通过所给远程端口获取题目，ls后，有fd(ELF) ，fd.c ，flag三文件，fd为fd.c编译。尝试打开flag 没有权限 打开fd.c查看源码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">char buf[32];</span><br><span class="line">int main(int argc, char* argv[], char* envp[])&#123;</span><br><span class="line">	if(argc&lt;2)&#123;</span><br><span class="line">		printf(&quot;pass argv[1] a number\n&quot;);</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	int fd = atoi( argv[1] ) - 0x1234;</span><br><span class="line">	int len = 0;</span><br><span class="line">	len = read(fd, buf, 32);</span><br><span class="line">	if(!strcmp(&quot;LETMEWIN\n&quot;, buf))&#123;</span><br><span class="line">		printf(&quot;good job :)\n&quot;);</span><br><span class="line">		system(&quot;/bin/cat flag&quot;);</span><br><span class="line">		exit(0);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;learn about Linux file IO\n&quot;);</span><br><span class="line">	return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们希望执行<code>system(&quot;/bin/cat flag&quot;)</code>; 故需执行<code>!strcmp(&quot;LETMEWIN\n&quot;, buf)</code>，即令<code>buf=LETMEWIN</code><br>看到<code>read(fd,buf,32)</code>，由read函数的定义，需要使fd==0，即标准输入 故<code>fd=0x1234=4660</code><br>输入<code>./fd 4660</code>后可进行输入，输入<code>LETMEWIN</code>，得flag</p>
+<hr>
+<p><center>—–col—–</center></p>
+<h3 id="参考：-2"><a href="#参考：-2" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>hash collision 就是针对哈希函数的特性，精心构造数据，使所有数据的哈希值相同，当这些数据保存到哈希表中，哈希表就会退化为单链表，哈希表的各种操作的时间复杂度提升一个数量级，因此会消耗大量CPU资源，导致系统无法快速响应请求，从而达到拒绝服务攻击（Dos）的目的。 本题就是构造与所给hashcode相同的值 <blockquote>
+<p>注：<a href="https://www.kawabangga.com/posts/2493" target="_blank" rel="noopener">https://www.kawabangga.com/posts/2493</a> <a href="http://vearne.cc/archives/34477" target="_blank" rel="noopener">http://vearne.cc/archives/34477</a></p>
+</blockquote>
+</li>
+<li>《深入理解计算机系统》2.1.4节，大部分机器存储对象以小端法存储.</li>
+<li>关于输入，使用了shell语言中的反括号，反引号在Linux shell命令行中有特殊的含义：反引号间的内容，会被shell先执行。其输出被放入主命令后，主命令再被执行 <blockquote>
+<p>注：<a href="https://www.jianshu.com/p/ed41f2e48464" target="_blank" rel="noopener">https://www.jianshu.com/p/ed41f2e48464</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>与fd相似，按所给进行远程连接后，打开col.c分析 源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">unsigned long hashcode = 0x21DD09EC;</span><br><span class="line">unsigned long check_password(const char* p)&#123;</span><br><span class="line">	int* ip = (int*)p;</span><br><span class="line">	int i;</span><br><span class="line">	int res=0;</span><br><span class="line">	for(i=0; i&lt;5; i++)&#123;</span><br><span class="line">		res += ip[i];</span><br><span class="line">	&#125;</span><br><span class="line">	return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[])&#123;</span><br><span class="line">	if(argc&lt;2)&#123;</span><br><span class="line">		printf(&quot;usage : %s [passcode]\n&quot;, argv[0]);</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	if(strlen(argv[1]) != 20)&#123;</span><br><span class="line">		printf(&quot;passcode length should be 20 bytes\n&quot;);</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if(hashcode == check_password( argv[1] ))&#123;</span><br><span class="line">		system(&quot;/bin/cat flag&quot;);</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">		printf(&quot;wrong passcode.\n&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先定义了函数<code>check_password</code>,作用是将p(char类型，1字节)，强制转化为int型(4字节)再赋给ip，循环5次相加后得到一个20字节的数<br> 再看main函数部分后，得知当传入的参数经<code>check_password</code>后与所给的hashcode相同时 获得flag，所以20个字节的char p会被分成5段，一段4个字节，<br>就是我们找5个数相加为<code>0x21DD09EC</code>即可。<br>我先将<code>0x21DD09EC</code>转为10进制数后，随便找了一个数(123456789)*4后，相减得到最后一个数(16进制：<code>0x46DD598</code>)。<br>另外注意在输入时使用小端输入。 输入为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./col &apos;0x75BCD15&apos;*4+&apos;0X46DD598&apos;</span><br></pre></td></tr></table></figure></p>
+<p>但是在直接输入了后依然不对，最后找到原因是shell不能直接识别这样的输入，需要写shell语言格式或利用其他语言传参。用其它语言用反括号隔开<br>正确输入为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./col `python -c &quot;print &apos;\x15\xcd\x5b\x07&apos; * 4 + &apos;\x98\xd5\x6d\x04&apos;&quot;`</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/postweb-题解-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1339,125 +1510,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/20190415学习记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Conlonial">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Conlonial's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/15/20190415学习记录/" itemprop="url">20190415学习记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-15T15:43:02+08:00">
-                2019-04-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="读完了《程序员自我修养》的第一章，本章主要回顾了解了计算机的软硬件基本结构、操作系统、线程的一些原理运行过程。"><a href="#读完了《程序员自我修养》的第一章，本章主要回顾了解了计算机的软硬件基本结构、操作系统、线程的一些原理运行过程。" class="headerlink" title="读完了《程序员自我修养》的第一章，本章主要回顾了解了计算机的软硬件基本结构、操作系统、线程的一些原理运行过程。"></a>读完了《程序员自我修养》的第一章，本章主要回顾了解了计算机的软硬件基本结构、操作系统、线程的一些原理运行过程。</h2><h2 id="python学习完了语言的基本语法和格式，随慕课网上习题编写了包括数字转换、条件输出等七个简单程序"><a href="#python学习完了语言的基本语法和格式，随慕课网上习题编写了包括数字转换、条件输出等七个简单程序" class="headerlink" title="python学习完了语言的基本语法和格式，随慕课网上习题编写了包括数字转换、条件输出等七个简单程序"></a>python学习完了语言的基本语法和格式，随慕课网上习题编写了包括数字转换、条件输出等七个简单程序</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1508,7 +1560,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
